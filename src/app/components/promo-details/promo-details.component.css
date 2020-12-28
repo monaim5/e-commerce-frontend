@@ -1,0 +1,25 @@
+.overlay-image {
+  height: 7rem;
+  background: #777 center;
+  background-size: cover;
+}
+
+.stretch-badge > .mat-badge-content {
+  width: auto;
+  border-radius: 13px;
+  right: initial !important;
+}
+
+.mybadge {
+  position: relative;
+  width: 100%;
+  top: -10px;
+  left: 16px;
+  border-radius: 13px;
+  padding: 3px;
+  margin-bottom: 2px;
+  display: flex;
+  justify-content: center
+
+
+}

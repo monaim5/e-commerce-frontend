@@ -11,12 +11,12 @@ import {AuthService} from "../../../core/services/auth.service";
 export class SignupComponent implements OnInit {
 
   signupForm: FormGroup;
-  singupPayload: SignupPayload;
+  signupPayload: SignupPayload;
 
   constructor(private authService: AuthService) {
-    this.singupPayload = {
+    this.signupPayload = {
       email: '',
-      password: ''
+      password: '',
     };
   }
 
@@ -24,13 +24,15 @@ export class SignupComponent implements OnInit {
     this.signupForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
+      confirmPassword: new FormControl('', [Validators.required])
     });
   }
 
   signup(): void{
-    this.singupPayload.email = this.signupForm.get('email').value;
-    this.singupPayload.password = this.signupForm.get('password').value;
-    this.authService.signup(this.singupPayload).subscribe(data => {
+    this.signupPayload.email = this.signupForm.get('email').value;
+    this.signupPayload.password = this.signupForm.get('password').value;
+
+    this.authService.signup(this.signupPayload).subscribe(data => {
       console.log(data);
     });
   }

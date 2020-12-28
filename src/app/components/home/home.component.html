@@ -1,1 +1,57 @@
-<p>home works!</p>
+<div class="container-fluid m-2">
+<!--  <div class="row">-->
+  <mat-sidenav-container>
+    <mat-sidenav [style.width]="'200px'" [opened]="sidenavOpened" mode="side" fxHide.lt-lg>
+      <app-categories></app-categories>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-9 p-0" style="border: 2px blue solid">
+            <div class="row-7" style="border: 2px green solid">
+              <app-featuer-slider></app-featuer-slider>
+            </div>
+            <div class="row-5" style="border: 2px green solid">
+              <app-promos></app-promos>
+            </div>
+          </div>
+          <div class="col-3 p-0" style="border: 2px blue solid">
+            <app-hotpicks></app-hotpicks>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+
+<!--  <div class="col-2" style="border: 2px black solid">-->
+<!--      <app-categories></app-categories>-->
+<!--    </div>-->
+
+<!--    <div class="col-10">-->
+<!--      <div class="container-fluid">-->
+<!--        <div class="row">-->
+<!--          <div class="col-9 p-0" style="border: 2px blue solid">-->
+<!--            <div class="row-7" style="border: 2px green solid">-->
+<!--              <app-featuer-slider></app-featuer-slider>-->
+<!--            </div>-->
+<!--            <div class="row-5" style="border: 2px green solid">-->
+<!--              <app-promos></app-promos>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="col-3 p-0" style="border: 2px blue solid">-->
+<!--            <app-hotpicks></app-hotpicks>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+  </div>
+<!--</div>-->
+<div>
+  <app-banner></app-banner>
+  <app-banner></app-banner>
+  <app-product-grid></app-product-grid>
+  <app-footer></app-footer>
+</div>
+
+

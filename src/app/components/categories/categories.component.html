@@ -1,0 +1,9 @@
+<mat-nav-list>
+  <a mat-list-item routerLink="#"
+     matTooltipPosition="after"
+     [matTooltip]="(category.name.length > 19)?category.name:''"
+     *ngFor="let category of categories">
+    {{ category.name | truncateText: [19] }}
+  </a>
+
+</mat-nav-list>

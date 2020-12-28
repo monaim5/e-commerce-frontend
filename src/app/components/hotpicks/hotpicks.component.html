@@ -1,0 +1,25 @@
+<div class="container-fluid" style="border: 2px red solid">
+
+
+  <div class="row-4" style="text-align: center">
+<!--    <button mat-raised-button><mat-icon style="transform: scale(5)">person</mat-icon></button>-->
+    <button mat-raised-button color="primary" style="width: 70px;height: 70px;border-radius: 50px;">
+      <span><mat-icon style="transform: scale(2)">person</mat-icon></span>
+    </button>
+    <div class="m-1"><h2>Welcome to Monaim Shop</h2></div>
+    <div class="row p-2">
+      <button mat-raised-button class="col mx-3">Sign in</button>
+      <button mat-raised-button color="primary" class="col mx-3">Sign up</button>
+    </div>
+  </div>
+  <div class="row-8 overlay-image" style="color: white;background-image:url('../../../assets/miniature.jpg')">
+    <h4>Welcome newcomers!</h4>
+    <h3>US $0.01 hot picks & coupons</h3>
+    <span>Get your US $3.00 coupon</span>
+    <div class="row p-1">
+      <app-product-card [width]="'120px'" [height]="'150px'" class="col-6"></app-product-card>
+      <app-product-card [width]="'120px'" [height]="'150px'" class="col-6"></app-product-card>
+    </div>
+  </div>
+</div>
+

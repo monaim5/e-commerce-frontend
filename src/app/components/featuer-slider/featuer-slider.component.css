@@ -1,0 +1,14 @@
+.overlay-image {
+  height: 19rem;
+  background: #777 center;
+  opacity: 0.5;
+  border-radius: 8px;
+  background-size:100% auto;
+}
+/*img {*/
+/*  !*position: absolute;*!*/
+/*  opacity: 0.5;*/
+/*  border-radius: 8px;*/
+/*  top: -25%;*/
+/*  max-width: 100%;*/
+/*}*/
