@@ -38,3 +38,7 @@
 .myborder {
   border: red solid 2px;
 }
+
+.brd {
+  border-radius: 13px;
+}

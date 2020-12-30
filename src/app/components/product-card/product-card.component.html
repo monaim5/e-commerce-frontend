@@ -1,3 +1,38 @@
-<div class="bg-danger" [style.width]="width" [style.height]="height" style="border-radius: 10px">
+<!--<div [style.width]="width"-->
+<!--     [style.height]="height"-->
+<!--     style="border-radius: 10px">-->
+<!--  <div class="overlay-image h-75" style="background-image: url('../../../assets/cant wait.jpg')"></div>-->
+<!--  <div class="text-center rounded">-->
+<!--    <span class="bg-danger">US $0.89</span>-->
+<!--  </div>-->
+<!--</div>-->
 
-</div>
+<!--<div>-->
+<!--  <div [ngStyle]="applyStyle()">-->
+<!--    <div class="overlay-image rounded h-75"-->
+<!--         style="background-image:url('../../../assets/miniature.jpg')"></div>-->
+<!--    <div class="d-flex flex-column h-25" style="text-align: center">-->
+<!--      <div class="badge-danger mybadge border-red">US $0.89</div>-->
+<!--      <div *ngIf="promo" class="badge-pill mybadge"><s>US $2.89</s></div>-->
+<!--      <div *ngIf="addToCart"><button mat-raised-button>Add To Cart</button></div>-->
+<!--    </div>-->
+<!--    &lt;!&ndash;  <span matBadge="hello therer" class="row-2 stretch-badge"></span>&ndash;&gt;-->
+<!--  </div>-->
+<!--</div>-->
+
+<mat-card class="p-1">
+  <div style="margin-bottom: 1em" [ngStyle]="applyStyle()">
+    <div class="overlay-image rounded h-100"
+         fxLayout="row wrap"
+         fxLayoutAlign="center center"
+         style="background-image:url('../../../assets/miniature.jpg')">
+      <div class="w-100 pb-1" fxLayout="row wrap" fxLayoutAlign="space-around start" [ngStyle]="{'margin-top': height}">
+        <div  class="text-center badge-danger mybadge border-red">US $0.89</div>
+        <div *ngIf="promo" style="color: #777777" class="text-center mybadge badge-light"><s>US $2.89</s></div>
+      </div>
+    </div>
+  </div>
+  <mat-card-actions class="pb-2" fxLayoutAlign="center center">
+    <div class="py-2" *ngIf="addToCart"><button mat-raised-button color="primary">Add To Cart</button></div>
+  </mat-card-actions>
+</mat-card>

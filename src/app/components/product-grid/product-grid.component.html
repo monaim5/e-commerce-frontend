@@ -1,1 +1,7 @@
-<p>product-grid works!</p>
+<div  class="w-100 py-3">
+  <h2>Products</h2>
+  <div style="font-size: 1.1rem" fxLayout="row wrap" fxLayoutAlign="space-between">
+    <app-product-card class="mb-4" *ngFor="let product of products"
+                      [height]="'250px'" [width]="'200px'" [addToCart]="true"></app-product-card>
+  </div>
+</div>

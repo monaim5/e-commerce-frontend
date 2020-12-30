@@ -23,6 +23,17 @@ import { PromoDetailsComponent } from './promo-details/promo-details.component';
 import {IvyCarouselModule} from "angular-responsive-carousel";
 import { ProductCardComponent } from './product-card/product-card.component';
 import {TruncateTextPipe} from "../shared/truncate-text.pipe";
+import { UserAccountComponent } from './user-account/user-account.component';
+import { AddProductComponent } from './add-product/add-product.component';
+import { AdminComponent } from './admin/admin.component';
+import { DefalultComponent } from './defalult/defalult.component';
+import { InputComponent } from './shared/input/input.component';
+import { CheckboxComponent } from './shared/checkbox/checkbox.component';
+import { TextareaComponent } from './shared/textarea/textarea.component';
+import { ButtonComponent } from './shared/button/button.component';
+import { SelectComponent } from './shared/select/select.component';
+import { RadiobuttonComponent } from './shared/radiobutton/radiobutton.component';
+import { DynamicFieldDirective } from './shared/dynamic-field/dynamic-field.directive';
 
 
 @NgModule({
@@ -43,7 +54,18 @@ import {TruncateTextPipe} from "../shared/truncate-text.pipe";
     PromosComponent,
     PromoDetailsComponent,
     ProductCardComponent,
-    TruncateTextPipe
+    TruncateTextPipe,
+    UserAccountComponent,
+    AddProductComponent,
+    AdminComponent,
+    DefalultComponent,
+    InputComponent,
+    CheckboxComponent,
+    TextareaComponent,
+    ButtonComponent,
+    SelectComponent,
+    RadiobuttonComponent,
+    DynamicFieldDirective
   ],
   exports: [
     HeaderComponent,

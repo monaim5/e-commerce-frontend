@@ -1,0 +1,5 @@
+<app-header (menuClicked)="component.toggleSidenav()"></app-header>
+<div class="main bg-light">
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
+</div>
+<app-footer></app-footer>

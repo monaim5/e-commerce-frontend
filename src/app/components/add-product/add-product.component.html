@@ -1,0 +1,31 @@
+<div>
+  <h2>Add product</h2>
+  <div>
+    <form [formGroup]="addProductForm">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input formControlName="name" matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea formControlName="description" matInput></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Price</mat-label>
+        <input formControlName="price" matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Quantity</mat-label>
+        <input formControlName="quantity" matInput>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Category</mat-label>
+        <input matInput>
+      </mat-form-field>
+    </form>
+  </div>
+</div>

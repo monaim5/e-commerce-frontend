@@ -5,13 +5,14 @@ import {ProductResponse} from "../../core/models/server-response";
 import {Subscribable, Subscription} from "rxjs";
 import {Product} from "../../core/models/product.model";
 import {PhotoService} from "../../core/services/photo.service";
+import {HasSidenav} from "../defalult/interfaces";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, HasSidenav {
   @Input() sidenavToggleEvent;
   sidenavOpened = true;
   products: Array<Product>;

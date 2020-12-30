@@ -1,0 +1,34 @@
+/*.overlay-image {*/
+/*  height: 11rem;*/
+/*  background: #777 center;*/
+/*  border-radius: 8px;*/
+/*  background-size:100% auto;*/
+/*}*/
+
+.overlay-image {
+  background: #777 center;
+  background-size: cover;
+  border: 1px solid white;
+}
+
+/*.stretch-badge > .mat-badge-content {*/
+/*  width: auto;*/
+/*  border-radius: 13px;*/
+/*  right: initial !important;*/
+/*}*/
+
+.border-red {
+  border: 1px solid red;
+}
+.mybadge {
+  font-size: 1em;
+  /*position: relative;*/
+  width: 5em;
+  /*bottom: -50%;*/
+  border-radius: 13px;
+  padding: 3px;
+  /*margin-bottom: 0.01em;*/
+
+
+
+}
