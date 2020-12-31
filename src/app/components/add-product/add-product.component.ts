@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {DynamicFormComponent} from '../shared/dynamic-form/dynamic-form.component';
+import {FieldConfig} from '../../shared/field.interface';
 
 @Component({
   selector: 'app-add-product',
@@ -7,19 +9,55 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  addProductForm: FormGroup;
   productPayload;
+  @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
+
+  fields: FieldConfig[] = [
+    {
+      name: 'name',
+      type: 'input',
+      inputType: 'text',
+      label: 'Name',
+      value: '',
+
+      validations: [
+        {
+          name: 'required',
+          validator: Validators.required,
+          message: 'Name Required'
+        },
+        // {
+        //   name: 'pattern',
+        //   validator: Validators.pattern('^[a-zA-Z]+$'),
+        //   message: 'Accept only text'
+        // }
+      ]
+    },
+    // {
+    //   type: 'select',
+    //   label: 'Country',
+    //   name: 'country',
+    //   value: 'UK',
+    //   options: ['India', 'UAE', 'UK', 'US']
+    // },
+    // {
+    //   type: 'checkbox',
+    //   label: 'Accept Terms',
+    //   name: 'term',
+    //   value: true
+    // },
+    {
+      type: 'button',
+      label: 'Save',
+      inputType: 'reset'
+    }
+  ];
   constructor() { }
 
-  ngOnInit(): void {
-    this.addProductForm = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      description: new FormControl('', [Validators.required]),
-      price: new FormControl('', Validators.required),
-      quantity: new FormControl('', Validators.required),
-      category: new FormControl('', Validators.required),
-      photo: new FormControl('', Validators.required)
-    });
-  }
+  ngOnInit(): void { }
 
+  submit($event: any): any {
+    const form = this.form.form;
+    console.log(form);
+  }
 }

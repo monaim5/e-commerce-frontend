@@ -1,6 +1,7 @@
+'https://medium.com/@mail.bahurudeen/create-a-dynamic-form-with-configurable-fields-and-validations-using-angular-6-994db56834da'
 export interface Validator {
   name: string;
-  validators: any;
+  validator: any;
   message: string;
 }
 
@@ -11,6 +12,6 @@ export interface FieldConfig {
   options?: string[];
   collections?: any;
   type: any;
-  value: any;
+  value?: any;
   validations?: Validator[];
 }

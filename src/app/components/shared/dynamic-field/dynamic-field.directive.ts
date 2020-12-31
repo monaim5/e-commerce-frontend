@@ -7,9 +7,6 @@ import {SelectComponent} from "../select/select.component";
 import {RadiobuttonComponent} from "../radiobutton/radiobutton.component";
 import {CheckboxComponent} from "../checkbox/checkbox.component";
 
-@Directive({
-  selector: '[dynamicField]'
-})
 const componentMapper = {
   input: InputComponent,
   button: ButtonComponent,
@@ -17,6 +14,10 @@ const componentMapper = {
   radiobutton: RadiobuttonComponent,
   checkbox: CheckboxComponent
 };
+
+@Directive({
+  selector: '[dynamicField]'
+})
 export class DynamicFieldDirective implements OnInit{
   @Input() field: FieldConfig;
   @Input() group: FormGroup;
