@@ -14,10 +14,15 @@ export class ProductService {
   getAll(): Observable<any>{
     return this.api.get('/products');
   }
+
   getByCategory(category: string): Observable<any>{
     const params = new HttpParams()
       .set('category', category);
-    return this.api.get('products', params);
+    return this.api.get('/products', params);
+  }
+
+  create(product: Product): Observable<any> {
+    return this.api.post('/products', product);
   }
   // get(id: number): Observable<Product> {
   //   return this.api.get('/products/' + id);

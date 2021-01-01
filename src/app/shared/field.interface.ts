@@ -9,7 +9,7 @@ export interface FieldConfig {
   label?: string;
   name?: string;
   inputType?: string;
-  options?: string[];
+  options?: {value: string; viewValue: string}[];
   collections?: any;
   type: any;
   value?: any;

@@ -6,13 +6,15 @@ import {ButtonComponent} from "../button/button.component";
 import {SelectComponent} from "../select/select.component";
 import {RadiobuttonComponent} from "../radiobutton/radiobutton.component";
 import {CheckboxComponent} from "../checkbox/checkbox.component";
+import {TextareaComponent} from "../textarea/textarea.component";
 
 const componentMapper = {
   input: InputComponent,
   button: ButtonComponent,
   select: SelectComponent,
   radiobutton: RadiobuttonComponent,
-  checkbox: CheckboxComponent
+  checkbox: CheckboxComponent,
+  textarea: TextareaComponent
 };
 
 @Directive({
