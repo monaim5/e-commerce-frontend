@@ -8,6 +8,7 @@ import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.comp
 import {AdminComponent} from './components/admin/admin.component';
 import {AddProductComponent} from './components/admin/add-product/add-product.component';
 import {DefaultComponent} from "./components/default/default.component";
+import {ProductsComponent} from "./components/admin/products/products.component";
 
 const routes: Routes = [
   { path: '', component: DefaultComponent,
@@ -17,7 +18,8 @@ const routes: Routes = [
   ]},
   { path: 'admin', component: AdminComponent,
     children: [
-      { path: 'addProduct', component: AddProductComponent }
+      { path: 'addProduct', component: AddProductComponent },
+      { path: 'product', component: ProductsComponent }
   ]},
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent },

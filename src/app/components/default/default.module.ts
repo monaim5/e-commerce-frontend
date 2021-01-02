@@ -21,6 +21,7 @@ import {SharedModule} from '../shared/shared.module';
 import {MaterialModule} from "../../material/material.module";
 import {IvyCarouselModule} from "angular-responsive-carousel";
 import {RouterModule} from "@angular/router";
+import {AppRoutingModule} from "../../app-routing.module";
 
 
 
@@ -41,15 +42,15 @@ import {RouterModule} from "@angular/router";
     PromosComponent,
     PromoDetailsComponent,
     ProductCardComponent,
-    TruncateTextPipe,
     UserAccountComponent,
+    TruncateTextPipe,
   ],
   imports: [
     CommonModule,
     SharedModule,
     MaterialModule,
     IvyCarouselModule,
-    RouterModule
+    AppRoutingModule
   ]
 })
 export class DefaultModule { }

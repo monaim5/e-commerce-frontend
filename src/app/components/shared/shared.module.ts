@@ -10,6 +10,7 @@ import {DynamicFieldDirective} from "./dynamic-field/dynamic-field.directive";
 import {DynamicFormComponent} from "./dynamic-form/dynamic-form.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MaterialModule} from "../../material/material.module";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 
 
@@ -24,10 +25,21 @@ import {MaterialModule} from "../../material/material.module";
     DynamicFieldDirective,
     DynamicFormComponent,
   ],
+  exports: [
+    InputComponent,
+    CheckboxComponent,
+    TextareaComponent,
+    ButtonComponent,
+    SelectComponent,
+    RadiobuttonComponent,
+    DynamicFieldDirective,
+    DynamicFormComponent,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    FlexLayoutModule
   ]
 })
 export class SharedModule { }
