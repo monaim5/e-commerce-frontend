@@ -14,7 +14,7 @@ export class ApiService {
       // .pipe(catchError(err => err));
   }
 
-  post(path, payload: any): Observable<any>{
+  post(path, payload: any): Observable<any> {
     return this.http.post(`${this.host}${path}`, payload, {responseType: 'text'});
   }
 }

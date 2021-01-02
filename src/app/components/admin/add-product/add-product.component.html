@@ -1,0 +1,26 @@
+<div class="container p-5">
+  <h2>Add product</h2>
+  <div>
+    <app-dynamic-form *ngIf="fields !== undefined" [fields]="fields" (submit)="submit($event)"></app-dynamic-form>
+    <div class="mt-2">
+      <input #fileUploader hidden (change)="onFileSelected(fileUploader.files)" type="file">
+      <button mat-raised-button color="accent" (click)="fileUploader.click()">Upload file</button>
+      <div fxLayout="column" *ngFor="let photo of inProgressPhotos">
+        <mat-card class="mt-2" *ngIf=" photo.percentage | async as res">
+          <mat-card-subtitle>
+            {{ photo.title }}
+          </mat-card-subtitle>
+          <mat-card-content>
+            <mat-progress-bar mode="determinate" [value]="res"></mat-progress-bar>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+
+
+
+<!--  <input #fileUploader id="singleFile" type="file"-->
+<!--         [multiple]="true"-->
+<!--         (change)="onFileSelected(fileUploader.files)"/>-->
+</div>

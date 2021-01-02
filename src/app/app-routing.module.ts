@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {HomeComponent} from "./components/home/home.component";
-import {SignupComponent} from "./components/auth/signup/signup.component";
-import {SigninComponent} from "./components/auth/signin/signin.component";
-import {ProductComponent} from "./components/product/product.component";
-import {PageNotFoundComponent} from "./shared/page-not-found/page-not-found.component";
-import {AdminComponent} from "./components/admin/admin.component";
-import {AddProductComponent} from "./components/add-product/add-product.component";
-import {DefalultComponent} from "./components/defalult/defalult.component";
+import {HomeComponent} from './components/default/home/home.component';
+import {SignupComponent} from './components/auth/signup/signup.component';
+import {SigninComponent} from './components/auth/signin/signin.component';
+import {ProductComponent} from './components/default/product/product.component';
+import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
+import {AdminComponent} from './components/admin/admin.component';
+import {AddProductComponent} from './components/admin/add-product/add-product.component';
+import {DefaultComponent} from "./components/default/default.component";
 
 const routes: Routes = [
-  { path: '', component: DefalultComponent,
+  { path: '', component: DefaultComponent,
     children: [
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductComponent },

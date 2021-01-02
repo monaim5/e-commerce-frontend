@@ -7,20 +7,20 @@ import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ComponentsModule } from './components/components.module';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
-import {MaterialModule} from "./material/material.module";
+import {MaterialModule} from './material/material.module';
 
 @NgModule({
     declarations: [
-        AppComponent,
-        PageNotFoundComponent,
+      AppComponent,
+      PageNotFoundComponent,
     ],
     imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        ComponentsModule,
-        CoreModule,
-        MaterialModule,
+      BrowserModule,
+      AppRoutingModule,
+      BrowserAnimationsModule,
+      CoreModule,
+      MaterialModule,
+      ComponentsModule
     ],
     providers: [],
     exports: [],

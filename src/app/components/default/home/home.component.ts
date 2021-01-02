@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {ProductService} from "../../core/services/product.service";
-import {ProductResponse} from "../../core/models/server-response";
+import {ProductService} from "../../../core/services/product.service";
+import {ProductResponse} from "../../../core/models/server-response";
 import {Subscribable, Subscription} from "rxjs";
-import {Product} from "../../core/models/product.model";
-import {PhotoService} from "../../core/services/photo.service";
-import {HasSidenav} from "../defalult/interfaces";
+import {Product} from "../../../core/models/product.model";
+import {PhotoService} from "../../../core/services/photo.service";
+import {HasSidenav} from "../interfaces";
 
 @Component({
   selector: 'app-home',

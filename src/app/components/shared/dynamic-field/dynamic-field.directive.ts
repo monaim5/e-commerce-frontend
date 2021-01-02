@@ -14,7 +14,7 @@ const componentMapper = {
   select: SelectComponent,
   radiobutton: RadiobuttonComponent,
   checkbox: CheckboxComponent,
-  textarea: TextareaComponent
+  textarea: TextareaComponent,
 };
 
 @Directive({
