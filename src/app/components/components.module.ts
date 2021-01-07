@@ -13,6 +13,7 @@ import {AuthModule} from './auth/auth.module';
     AuthModule,
     AdminModule,
     DefaultModule
-  ]
+  ],
+  declarations: []
 })
 export class ComponentsModule { }

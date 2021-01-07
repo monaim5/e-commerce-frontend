@@ -1,5 +1,4 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {DynamicFormComponent} from '../../shared/dynamic-form/dynamic-form.component';
 import {FieldConfig} from '../../../shared/field.interface';
 import {CategoryService} from '../../../core/services/category.service';
@@ -11,20 +10,21 @@ import {PhotoService} from '../../../core/services/photo.service';
 import {Photo} from '../../../core/models/photo.model';
 import {Observable} from 'rxjs';
 import {HttpEvent, HttpEventType} from '@angular/common/http';
+import {Validators} from '@angular/forms';
+import {DynamicFormInterface} from '../../shared/dynamic-form.interface';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
-export class AddProductComponent implements OnInit {
+export class AddProductComponent implements OnInit, DynamicFormInterface {
+
   productPayload: Product;
   categories?: Category[];
   fields: FieldConfig[];
   inProgressPhotos: Array<{title: string, percentage: Observable<any>}> = [];
   uploadedPhotos: Photo[] = [];
-
-
   @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
 
   constructor(private productService: ProductService,
@@ -38,22 +38,37 @@ export class AddProductComponent implements OnInit {
     });
   }
 
-  submit($event: any): any {
+  submit(event: any): void {
     this.productPayload = this.form.value;
     this.productPayload.photos = this.uploadedPhotos;
+    console.log(this.productPayload);
     this.productService.create(this.productPayload).subscribe(data => {
       console.log(data);
     });
   }
-/*id: number;
-  name: string;
-  designation?: string;
-  description?: string;
-  price?: number;
-  quantity?: number;
-  available?: boolean;
-  photos: Photo[];
-  categoryId?: number;*/
+
+  onFileSelected(files: FileList): void {
+    this.inProgressPhotos.push({
+        title: files.item(0).name,
+        percentage: this.photoService.upload({
+          id: null,
+          url: null,
+          productId: null,
+          title: files.item(0).name,
+          file: files.item(0)
+        }).pipe(map((event: HttpEvent<any>) => {
+            switch (event.type) {
+              case(HttpEventType.UploadProgress):
+                return Math.round((event.loaded / event.total) * 100);
+              case (HttpEventType.Response):
+                console.log(event.body);
+                this.uploadedPhotos.push(event.body);
+                return 100;
+            }})),
+      }
+    );
+  }
+
   initializeForm(): void {
     this.fields = [
       {
@@ -117,19 +132,4 @@ export class AddProductComponent implements OnInit {
     ];
   }
 
-  onFileSelected(files: FileList): void {
-    this.inProgressPhotos.push({
-        title: 'hello there bothd',
-        percentage: this.photoService.upload({file: files.item(0), title: 'hello there bothd'})
-          .pipe(map((event: HttpEvent<any>) => {
-            switch (event.type) {
-              case(HttpEventType.UploadProgress):
-                return Math.round((event.loaded / event.total) * 100);
-              case (HttpEventType.Response):
-                this.uploadedPhotos.push(event.body);
-                return 100;
-            }})),
-      }
-    );
-  }
 }

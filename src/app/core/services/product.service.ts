@@ -15,6 +15,13 @@ export class ProductService {
     return this.api.get('/products');
   }
 
+  getHotPicks(): Observable<any> {
+    const params = new HttpParams()
+      .set('sortBy', 'sales')
+      .set('pageSize', '2');
+    return this.api.get('/products', params);
+  }
+
   getByCategory(category: string): Observable<any>{
     const params = new HttpParams()
       .set('category', category);
@@ -27,4 +34,19 @@ export class ProductService {
   // get(id: number): Observable<Product> {
   //   return this.api.get('/products/' + id);
   // }
+  delete(id: number): Observable<any> {
+    const params = new HttpParams()
+      .set('id', id.toString());
+    return this.api.delete('/products', params);
+  }
+
+  get(id: number): Observable<any> {
+    const params = new HttpParams()
+      .set('id', id.toString());
+    return this.api.get('/products', params);
+  }
+
+  edit(product: Product): Observable<any> {
+    return this.api.put('/products', product);
+  }
 }

@@ -7,8 +7,8 @@
       <h3>US $0.01 hot picks & coupons</h3>
       <span>Get your US $3.00 coupon</span>
       <div fxLayout="row wrap" fxLayoutAlign="space-around">
-        <app-product-card [promo]="true" [width]="'90px'" [height]="'110px'"></app-product-card>
-        <app-product-card [promo]="true" [width]="'90px'" [height]="'110px'"></app-product-card>
+        <app-product-card *ngFor="let product of products" [product]="product"
+                          [width]="'90px'" [height]="'110px'"></app-product-card>
       </div>
     </div>
 

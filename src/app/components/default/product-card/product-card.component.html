@@ -22,16 +22,21 @@
 
 <mat-card *ngIf="product.photos[0].url" class="p-1">
   <div style="margin-bottom: 1em" [ngStyle]="applyStyle()">
-    <div class="overlay-image rounded h-100"
-         fxLayout="row wrap"
-         fxLayoutAlign="center center"
-         [style.bacground-image]="'url(' + product.photos[0].url + ')'"
-         style="background-image:url('../../../../assets/miniature.jpg')">
-      <div class="w-100 pb-1" fxLayout="row wrap" fxLayoutAlign="space-around start" [ngStyle]="{'margin-top': height}">
-        <div  class="text-center badge-danger mybadge border-red">US $0.89</div>
-        <div *ngIf="promo" style="color: #777777" class="text-center mybadge badge-light"><s>US $2.89</s></div>
-      </div>
+    <img [src]="product.photos[0].url"
+         style="object-fit: contain;" [ngStyle]="applyStyle()" alt="no such photo">
+    <div class="w-100 pb-1" fxLayout="row wrap" fxLayoutAlign="space-around start" style="margin-top: -0.8em">
+      <div  class="text-center badge-danger mybadge border-red">{{product.price | currency:'USD':'symbol'}}</div>
+      <div *ngIf="promo" style="color: #777777" class="text-center mybadge badge-light"><s>US $2.89</s></div>
     </div>
+<!--    <div class="overlay-image rounded h-100"-->
+<!--         fxLayout="row wrap"-->
+<!--         fxLayoutAlign="center center"-->
+<!--         [style.background-image]="'url(' + product.photos[0].url + ')'">-->
+<!--      <div class="w-100 pb-1" fxLayout="row wrap" fxLayoutAlign="space-around start" [ngStyle]="{'margin-top': height}">-->
+<!--        <div  class="text-center badge-danger mybadge border-red">US $0.89</div>-->
+<!--        <div *ngIf="promo" style="color: #777777" class="text-center mybadge badge-light"><s>US $2.89</s></div>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
   <mat-card-actions class="pb-2" fxLayoutAlign="center center">
     <div class="py-2" *ngIf="addToCart"><button mat-raised-button color="primary">Add To Cart</button></div>

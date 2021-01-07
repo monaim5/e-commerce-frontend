@@ -14,9 +14,8 @@ export class BannerComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.productService.getAll().subscribe(data => {
+    this.productService.getByCategory(this.category).subscribe(data => {
       this.products = data;
-      console.log(this.products);
     });
   }
   applyStyle(): any{

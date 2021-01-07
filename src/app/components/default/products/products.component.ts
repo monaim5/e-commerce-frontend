@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {Product} from "../../../core/models/product.model";
 import {ProductService} from "../../../core/services/product.service";
+import {Product} from "../../../core/models/product.model";
 
 @Component({
-  selector: 'app-product-grid',
-  templateUrl: './product-grid.component.html',
-  styleUrls: ['./product-grid.component.css']
+  selector: 'app-products',
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css']
 })
-export class ProductGridComponent implements OnInit {
+export class ProductsComponent implements OnInit {
+
   products: Product[];
 
   constructor(private productService: ProductService) { }
@@ -15,6 +16,7 @@ export class ProductGridComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAll().subscribe(data => {
       this.products = data;
+      console.log(this.products);
     });
   }
 

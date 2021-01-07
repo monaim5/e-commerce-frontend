@@ -3,23 +3,27 @@ import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './components/default/home/home.component';
 import {SignupComponent} from './components/auth/signup/signup.component';
 import {SigninComponent} from './components/auth/signin/signin.component';
-import {ProductComponent} from './components/default/product/product.component';
 import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {AddProductComponent} from './components/admin/add-product/add-product.component';
 import {DefaultComponent} from "./components/default/default.component";
-import {ProductsComponent} from "./components/admin/products/products.component";
+import {ProductsComponent as AdminProductsComponent} from "./components/admin/products/products.component";
+import {ProductsComponent as DefaultProductsComponent} from "./components/default/products/products.component";
+import {AddCategoryComponent} from "./components/admin/add-category/add-category.component";
+import {EditProductComponent} from "./components/admin/edit-product/edit-product.component";
 
 const routes: Routes = [
   { path: '', component: DefaultComponent,
     children: [
       { path: '', component: HomeComponent },
-      { path: 'products', component: ProductComponent },
+      { path: 'products', component: DefaultProductsComponent },
   ]},
   { path: 'admin', component: AdminComponent,
     children: [
       { path: 'addProduct', component: AddProductComponent },
-      { path: 'product', component: ProductsComponent }
+      { path: 'addCategory', component: AddCategoryComponent },
+      { path: 'products/:id', component: EditProductComponent },
+      { path: 'products', component: AdminProductsComponent }
   ]},
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent },

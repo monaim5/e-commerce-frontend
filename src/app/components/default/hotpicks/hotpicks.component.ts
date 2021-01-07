@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ProductService} from "../../../core/services/product.service";
+import {Product} from "../../../core/models/product.model";
 
 @Component({
   selector: 'app-hotpicks',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotpicksComponent implements OnInit {
 
-  constructor() { }
+  products: Product[];
+
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
+    this.productService.getHotPicks().subscribe(data => {
+      this.products = data;
+      console.log(this.products);
+    });
   }
 
 }

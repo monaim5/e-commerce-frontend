@@ -14,7 +14,7 @@ export class CategoryService {
     return this.apiService.get('/category');
   }
 
-  save(category: Category): Observable<any> {
+  create(category: Category): Observable<any> {
     return this.apiService.post('/category', category);
   }
 

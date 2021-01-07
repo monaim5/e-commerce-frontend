@@ -9,6 +9,11 @@ import {MaterialModule} from "../../material/material.module";
 import {SharedModule} from "../shared/shared.module";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { ProductsComponent } from './products/products.component';
+import { HeaderComponent } from './header/header.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import {Ng2SmartTableModule} from "ng2-smart-table";
+import { AddCategoryComponent } from './add-category/add-category.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 
 
@@ -16,7 +21,11 @@ import { ProductsComponent } from './products/products.component';
   declarations: [
     AddProductComponent,
     AdminComponent,
-    ProductsComponent
+    ProductsComponent,
+    HeaderComponent,
+    SidenavComponent,
+    AddCategoryComponent,
+    EditProductComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -24,7 +33,8 @@ import { ProductsComponent } from './products/products.component';
     AppRoutingModule,
     MaterialModule,
     SharedModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    Ng2SmartTableModule
   ]
 })
 export class AdminModule { }
