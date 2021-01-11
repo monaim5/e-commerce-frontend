@@ -14,6 +14,10 @@ export class ApiService {
       // .pipe(catchError(err => err));
   }
 
+  getById(path: string, id: number): Observable<any> {
+    return this.http.get(this.host + path + id);
+  }
+
   post(path, payload: any): Observable<any> {
     return this.http.post(`${this.host}${path}`, payload, {responseType: 'text'});
   }
@@ -22,7 +26,9 @@ export class ApiService {
     return this.http.put(`${this.host}${path}`, payload, {responseType: 'text'});
   }
 
-  delete(path, params: HttpParams): Observable<any> {
-    return this.http.delete(`${this.host}${path}`, {params});
+  delete(path: string, id: number | string): Observable<any> {
+    const params = new HttpParams()
+      .set('id', id.toString());
+    return this.http.delete(this.host + path, {params});
   }
 }

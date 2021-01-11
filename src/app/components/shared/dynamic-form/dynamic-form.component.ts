@@ -37,11 +37,24 @@ export class DynamicFormComponent implements OnInit {
     const group = this.fb.group({});
     this.fields.forEach(field => {
       if (field.type === 'button') { return; }
-      const control = this.fb.control(
-        field.value,
-        this.bindValidations(field.validations || [])
-      );
-      group.addControl(field.name, control);
+      if (field.type === 'rangePicker') {
+        const startDateControl = this.fb.control(
+          field.startDateValue,
+          this.bindValidations(field.validations || [])
+        );
+        const endDateControl = this.fb.control(
+          field.endDateValue,
+          this.bindValidations(field.validations || [])
+        );
+        group.addControl(field.startDate, startDateControl);
+        group.addControl(field.endDate, endDateControl);
+      } else {
+        const control = this.fb.control(
+          field.value,
+          this.bindValidations(field.validations || [])
+        );
+        group.addControl(field.name, control);
+      }
     });
     return group;
   }

@@ -6,11 +6,12 @@ import {SigninComponent} from './components/auth/signin/signin.component';
 import {PageNotFoundComponent} from './shared/page-not-found/page-not-found.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {AddProductComponent} from './components/admin/add-product/add-product.component';
-import {DefaultComponent} from "./components/default/default.component";
-import {ProductsComponent as AdminProductsComponent} from "./components/admin/products/products.component";
-import {ProductsComponent as DefaultProductsComponent} from "./components/default/products/products.component";
-import {AddCategoryComponent} from "./components/admin/add-category/add-category.component";
-import {EditProductComponent} from "./components/admin/edit-product/edit-product.component";
+import {DefaultComponent} from './components/default/default.component';
+import {ProductsComponent as AdminProductsComponent} from './components/admin/products/products.component';
+import {ProductsComponent as DefaultProductsComponent} from './components/default/products/products.component';
+import {AddCategoryComponent} from './components/admin/add-category/add-category.component';
+import {EditProductComponent} from './components/admin/edit-product/edit-product.component';
+import {PromosComponent} from './components/admin/promos/promos.component';
 
 const routes: Routes = [
   { path: '', component: DefaultComponent,
@@ -23,7 +24,8 @@ const routes: Routes = [
       { path: 'addProduct', component: AddProductComponent },
       { path: 'addCategory', component: AddCategoryComponent },
       { path: 'products/:id', component: EditProductComponent },
-      { path: 'products', component: AdminProductsComponent }
+      { path: 'products', component: AdminProductsComponent },
+      { path: 'promos', component: PromosComponent },
   ]},
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent },

@@ -1,7 +1,10 @@
-<div class="container p-5">
+<div class="container p-3">
   <h2>Add product</h2>
   <div>
-    <app-dynamic-form *ngIf="fields !== undefined" [fields]="fields" (submit)="submit($event)"></app-dynamic-form>
+
+    <app-dynamic-form *ngIf="fields !== undefined" [fields]="fields"></app-dynamic-form>
+
+
     <div class="mt-2">
       <input #fileUploader hidden (change)="onFileSelected(fileUploader.files)" type="file">
       <button mat-raised-button color="accent" (click)="fileUploader.click()">Upload file</button>
@@ -16,6 +19,8 @@
         </mat-card>
       </div>
     </div>
+
+    <button class="mt-2" mat-raised-button color="primary" (click)="submit($event)">submit</button>
   </div>
 
 

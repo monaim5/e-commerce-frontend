@@ -1,14 +1,14 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {DynamicFormComponent} from '../../shared/dynamic-form/dynamic-form.component';
 import {FieldConfig} from '../../../shared/field.interface';
 import {CategoryService} from '../../../core/services/category.service';
 import {Category} from '../../../core/models/category.model';
 import {map} from 'rxjs/operators';
-import {Product} from '../../../core/models/product.model';
+import {Product, productFormFields} from '../../../core/models/product.model';
 import {ProductService} from '../../../core/services/product.service';
 import {PhotoService} from '../../../core/services/photo.service';
 import {Photo} from '../../../core/models/photo.model';
-import {Observable} from 'rxjs';
+import {Observable, Subscription} from 'rxjs';
 import {HttpEvent, HttpEventType} from '@angular/common/http';
 import {Validators} from '@angular/forms';
 import {DynamicFormInterface} from '../../shared/dynamic-form.interface';
@@ -18,11 +18,12 @@ import {DynamicFormInterface} from '../../shared/dynamic-form.interface';
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css']
 })
-export class AddProductComponent implements OnInit, DynamicFormInterface {
+export class AddProductComponent implements OnInit, OnDestroy, DynamicFormInterface {
 
+  subscriptions: Subscription[] = [];
   productPayload: Product;
   categories?: Category[];
-  fields: FieldConfig[];
+  fields;
   inProgressPhotos: Array<{title: string, percentage: Observable<any>}> = [];
   uploadedPhotos: Photo[] = [];
   @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
@@ -32,19 +33,27 @@ export class AddProductComponent implements OnInit, DynamicFormInterface {
               private photoService: PhotoService) { }
 
   ngOnInit(): void {
-    this.categoryService.getAll().subscribe(data => {
-      this.categories = data;
-      this.initializeForm();
-    });
+    this.subscriptions.push(
+      this.categoryService.getAll().subscribe(data => {
+        this.categories = data;
+        this.fields = productFormFields(this.categories);
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(sub => sub.unsubscribe());
   }
 
   submit(event: any): void {
     this.productPayload = this.form.value;
     this.productPayload.photos = this.uploadedPhotos;
     console.log(this.productPayload);
-    this.productService.create(this.productPayload).subscribe(data => {
-      console.log(data);
-    });
+    this.subscriptions.push(
+      this.productService.create(this.productPayload).subscribe(data => {
+        console.log(data);
+      })
+    );
   }
 
   onFileSelected(files: FileList): void {
@@ -67,69 +76,6 @@ export class AddProductComponent implements OnInit, DynamicFormInterface {
             }})),
       }
     );
-  }
-
-  initializeForm(): void {
-    this.fields = [
-      {
-      name: 'name',
-      type: 'input',
-      inputType: 'text',
-      label: 'Name',
-      value: '',
-      validations: [
-        {
-          name: 'required',
-          validator: Validators.required,
-          message: 'Name Required'
-        }
-      ]},
-      {
-        name: 'categoryId',
-        type: 'select',
-        label: 'Category',
-        value: '0',
-        options: this.categories.map(cat => ({value: cat.id.toString(), viewValue: cat.name}))
-      },
-      {
-        name: 'designation',
-        type: 'input',
-        inputType: 'text',
-        label: 'Designation',
-        value: ''
-      },
-      {
-        name: 'description',
-        type: 'textarea',
-        label: 'Description',
-        value: ''
-      },
-      {
-        name: 'price',
-        type: 'input',
-        inputType: 'number',
-        label: 'Price',
-        value: 0
-      },
-      {
-        name: 'quantity',
-        type: 'input',
-        inputType: 'number',
-        label: 'Quantity',
-        value: 0
-      },
-      {
-        name: 'available',
-        type: 'checkbox',
-        label: 'Available',
-        value: true
-      },
-      {
-        type: 'button',
-        label: 'Save',
-        inputType: 'submit'
-      }
-    ];
   }
 
 }

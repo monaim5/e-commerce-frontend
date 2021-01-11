@@ -1,12 +1,13 @@
 import {ComponentFactoryResolver, Directive, Input, OnInit, ViewContainerRef} from '@angular/core';
-import {FieldConfig} from "../../../shared/field.interface";
-import {FormGroup} from "@angular/forms";
-import {InputComponent} from "../input/input.component";
-import {ButtonComponent} from "../button/button.component";
-import {SelectComponent} from "../select/select.component";
-import {RadiobuttonComponent} from "../radiobutton/radiobutton.component";
-import {CheckboxComponent} from "../checkbox/checkbox.component";
-import {TextareaComponent} from "../textarea/textarea.component";
+import {FieldConfig} from '../../../shared/field.interface';
+import {FormGroup} from '@angular/forms';
+import {InputComponent} from '../input/input.component';
+import {ButtonComponent} from '../button/button.component';
+import {SelectComponent} from '../select/select.component';
+import {RadiobuttonComponent} from '../radiobutton/radiobutton.component';
+import {CheckboxComponent} from '../checkbox/checkbox.component';
+import {TextareaComponent} from '../textarea/textarea.component';
+import {RangePickerComponent} from '../range-picker/range-picker';
 
 const componentMapper = {
   input: InputComponent,
@@ -15,6 +16,7 @@ const componentMapper = {
   radiobutton: RadiobuttonComponent,
   checkbox: CheckboxComponent,
   textarea: TextareaComponent,
+  rangePicker: RangePickerComponent
 };
 
 @Directive({

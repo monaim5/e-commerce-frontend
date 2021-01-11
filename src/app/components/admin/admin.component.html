@@ -1,7 +1,9 @@
-<app-header></app-header>
+<app-header (menuClicked)="sidenav.toggle()"></app-header>
 <mat-sidenav-container>
-  <mat-sidenav mode="side" opened [style.width]="'200px'">Start</mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav #sidenav mode="side" opened [style.width]="'200px'">
+    <app-sidenav></app-sidenav>
+  </mat-sidenav>
+  <mat-sidenav-content class="p-4" style="min-height: 500px">
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

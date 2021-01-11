@@ -5,9 +5,9 @@ import {FormGroup} from "@angular/forms";
 @Component({
   selector: 'app-input',
   template: `
-    <mat-form-field appearance="outline" [formGroup]="group">
+    <mat-form-field [hidden]="field.hidden" appearance="outline" [formGroup]="group">
       <mat-label>{{field.label}}</mat-label>
-      <input  matInput [formControlName]="field.name" [type]="field.inputType">
+      <input matInput [formControlName]="field.name" [type]="field.inputType">
       <ng-container *ngFor="let validation of field.validations;" ngProjectAs="mat-error">
         <mat-error *ngIf="group.get(field.name).hasError(validation.name)">{{validation.message}}</mat-error>
       </ng-container>
