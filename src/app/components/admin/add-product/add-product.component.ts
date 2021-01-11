@@ -51,7 +51,6 @@ export class AddProductComponent implements OnInit, OnDestroy, DynamicFormInterf
     console.log(this.productPayload);
     this.subscriptions.push(
       this.productService.create(this.productPayload).subscribe(data => {
-        console.log(data);
       })
     );
   }
