@@ -1,0 +1,15 @@
+<div fxLayout="row wrap" fxLayoutAlign="start">
+  <mat-card fxLayout="column" fxLayoutAlign="space-between center"
+            *ngFor="let item of data"
+            style="height: 220px;width: 150px"
+            class="mat-elevation-z4 rounded my-2 mr-2">
+    <img [src]="item.photos[0]?.url" style="max-width: 150px;max-height: 100px; object-fit: contain" alt="no photo">
+    <span [matTooltip]="(item.name.length > 27) ? item.name : ''">
+    {{item.name | truncateText: [27]}}
+    </span>
+    <mat-card-actions>
+      <button mat-button mat-ripple (click)="removeProductPromo(item)">Remove</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+

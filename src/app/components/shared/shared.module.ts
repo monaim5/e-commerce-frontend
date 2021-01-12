@@ -12,6 +12,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MaterialModule} from '../../material/material.module';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {RangePickerComponent} from './range-picker/range-picker';
+import {ItemsListComponent} from './items-list/items-list.component';
+import {TruncateTextPipe} from './truncate-text.pipe';
 
 
 @NgModule({
@@ -25,23 +27,27 @@ import {RangePickerComponent} from './range-picker/range-picker';
     RangePickerComponent,
     DynamicFieldDirective,
     DynamicFormComponent,
+    ItemsListComponent,
+    TruncateTextPipe
   ],
-  exports: [
-    InputComponent,
-    CheckboxComponent,
-    TextareaComponent,
-    ButtonComponent,
-    SelectComponent,
-    RadiobuttonComponent,
-    RangePickerComponent,
-    DynamicFieldDirective,
-    DynamicFormComponent,
-  ],
+    exports: [
+      InputComponent,
+      CheckboxComponent,
+      TextareaComponent,
+      ButtonComponent,
+      SelectComponent,
+      RadiobuttonComponent,
+      RangePickerComponent,
+      DynamicFieldDirective,
+      DynamicFormComponent,
+      ItemsListComponent,
+      TruncateTextPipe
+    ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     MaterialModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ]
 })
 export class SharedModule { }

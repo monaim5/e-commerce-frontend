@@ -1,8 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Promo, promoFormFields, PromoType, promoTypeFormFields} from '../../../core/models/promo.model';
 import {PromoService} from '../../../core/services/promo.service';
-import {DynamicFormComponent} from "../../shared/dynamic-form/dynamic-form.component";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {ProductService} from '../../../core/services/product.service';
+import {MatDialog} from '@angular/material/dialog';
+import {EditPromoComponent} from '../edit-promo/edit-promo.component';
 
 @Component({
   selector: 'app-promo',
@@ -11,7 +13,7 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 })
 export class PromosComponent implements OnInit {
   promoTypes: PromoType[];
-  promos;
+  promos: Promo;
   promoFields;
   promoTypeFields;
 
@@ -24,7 +26,9 @@ export class PromosComponent implements OnInit {
       endDate: {title: 'End Date', type: 'Date'},
       discountAmount: {title: 'Discount Amount'},
       type: {title: 'Promo Type'}
-    }
+    },
+    edit: {editButtonContent: 'Edit'},
+    actions: {position: 'right'}
   };
 
   promoTypeSettings = {
@@ -35,40 +39,32 @@ export class PromosComponent implements OnInit {
     }
   };
 
-  @ViewChild('promoTypeForm') promoTypeForm: DynamicFormComponent;
-  @ViewChild('promoForm') promoForm: DynamicFormComponent;
-  createPromoComponentActive = false;
-  createPromoTypeComponentActive = false;
   constructor(private promoService: PromoService,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private productService: ProductService,
+              private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.promoService.getTypes().subscribe(data => {
       this.promoTypes = data;
-      console.log(this.promoTypes);
       this.promoFields = promoFormFields(this.promoTypes);
       this.promoTypeFields = promoTypeFormFields;
     });
 
-    this.promos = this.promoService.getAll().subscribe(data => {
+    this.promoService.getAll().subscribe(data => {
       this.promos = data;
-      console.log(data);
     });
   }
 
-  submitPromo(): void{
-    this.promoService.create(this.promoForm.value).subscribe(data => {
-      console.log(data.status);
-      this.promos.push(data);
-      this.snackBar.open('Promo has been created');
+  openDialog(promo?): void {
+    const dialogRef = this.dialog.open(EditPromoComponent, {
+      width: '80%',
+      minWidth: 600,
+      data: {promo: promo || null}
     });
-  }
 
-  submitPromoType(): void {
-    this.promoService.createPromoType(this.promoTypeForm.value).subscribe(data => {
-      console.log(data.status);
-      this.promoTypes.push(data);
-      this.snackBar.open('PromoType has been created');
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
     });
   }
 
@@ -91,14 +87,13 @@ export class PromosComponent implements OnInit {
   }
 
   toggleCreatePromo(): void {
-    this.createPromoComponentActive = !this.createPromoComponentActive;
   }
 
   toggleCreatePromoType(): void {
-    this.createPromoTypeComponentActive = !this.createPromoTypeComponentActive;
   }
 
   onEdit(event: any): void {
-    console.log(event);
+    this.openDialog(event.data);
   }
+
 }

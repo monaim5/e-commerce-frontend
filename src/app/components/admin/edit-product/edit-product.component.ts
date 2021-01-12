@@ -154,7 +154,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
   updateProduct(): void {
     this.product = this.form.value;
     this.product.photos = this.uploadedPhotos;
-    this.productService.edit(this.product).subscribe(data => {
+    this.productService.update(this.product).subscribe(data => {
       console.log(data);
     });
   }

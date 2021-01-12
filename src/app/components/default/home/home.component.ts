@@ -19,7 +19,6 @@ export class HomeComponent implements OnInit, HasSidenav {
   productSubscription: Subscription;
 
   constructor(private productService: ProductService,
-              // private cartService: CartService,
               private photoService: PhotoService,
               private router: Router) { }
   ngOnInit(): void {

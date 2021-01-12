@@ -14,17 +14,8 @@
         [transitionTimingFunction]="'ease-in-out'"
         [height]="160"
         [width]="600">
-        <app-promo-details class="carousel-cell"></app-promo-details>
-        <app-promo-details class="carousel-cell"></app-promo-details>
-        <app-promo-details class="carousel-cell"></app-promo-details>
-        <app-promo-details class="carousel-cell"></app-promo-details>
-        <app-promo-details class="carousel-cell"></app-promo-details>
-        <app-promo-details class="carousel-cell"></app-promo-details>
-        <app-promo-details class="carousel-cell"></app-promo-details>
-        <app-promo-details class="carousel-cell"></app-promo-details>
-        <app-promo-details class="carousel-cell"></app-promo-details>
-        <app-promo-details class="carousel-cell"></app-promo-details>
-        <app-promo-details class="carousel-cell"></app-promo-details>
+
+        <app-promo-details *ngFor="let promo of promos" class="carousel-cell"></app-promo-details>
       </carousel>
     </div>
 

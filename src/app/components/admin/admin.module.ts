@@ -14,6 +14,8 @@ import {Ng2SmartTableModule} from 'ng2-smart-table';
 import { AddCategoryComponent } from './add-category/add-category.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import {PromosComponent} from './promos/promos.component';
+import { TestComponent } from './test/test.component';
+import { EditPromoComponent } from './edit-promo/edit-promo.component';
 
 
 
@@ -27,6 +29,8 @@ import {PromosComponent} from './promos/promos.component';
     AddCategoryComponent,
     EditProductComponent,
     PromosComponent,
+    TestComponent,
+    EditPromoComponent,
   ],
   imports: [
     ReactiveFormsModule,

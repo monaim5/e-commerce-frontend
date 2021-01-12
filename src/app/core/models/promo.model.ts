@@ -12,6 +12,7 @@ export interface Promo {
   discountAmount: number;
   active: boolean;
   type: PromoType;
+  productIds: number[];
 }
 export const promoTypeFormFields = [
   {

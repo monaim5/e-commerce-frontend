@@ -37,4 +37,8 @@ export class PromoService {
   deletePromoType(name: string): Observable<any> {
     return this.api.delete( '/promos/types', name);
   }
+
+  update(promoPayload: Promo): Observable<any> {
+    return this.api.put('/promos', promoPayload);
+  }
 }

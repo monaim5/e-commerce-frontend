@@ -39,7 +39,13 @@ export class ProductService {
     return this.api.getById('/products/', id);
   }
 
-  edit(product: Product): Observable<any> {
+  getByTitleContains(q: string): Observable<any> {
+    const params = new HttpParams()
+      .set('q', q);
+    return this.api.get('/products', params);
+  }
+
+  update(product: Product): Observable<any> {
     return this.api.put('/products', product);
   }
 }

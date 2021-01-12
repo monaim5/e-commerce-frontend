@@ -43,3 +43,7 @@ button:focus { outline: none; }
 .brd {
   border-radius: 13px;
 }
+
+.pointer {
+  cursor: pointer;
+}

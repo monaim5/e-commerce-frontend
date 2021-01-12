@@ -14,37 +14,40 @@ import {HotpicksComponent} from './hotpicks/hotpicks.component';
 import {PromosComponent} from './promos/promos.component';
 import {PromoDetailsComponent} from './promo-details/promo-details.component';
 import {ProductCardComponent} from './product-card/product-card.component';
-import {TruncateTextPipe} from '../../shared/truncate-text.pipe';
+// import {TruncateTextPipe} from '../../shared/truncate-text.pipe';
 import {UserAccountComponent} from './user-account/user-account.component';
 import {SharedModule} from '../shared/shared.module';
-import {MaterialModule} from "../../material/material.module";
-import {IvyCarouselModule} from "angular-responsive-carousel";
-import {AppRoutingModule} from "../../app-routing.module";
-import {FlexLayoutModule} from "@angular/flex-layout";
+import {MaterialModule} from '../../material/material.module';
+import {IvyCarouselModule} from 'angular-responsive-carousel';
+import {AppRoutingModule} from '../../app-routing.module';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import { ProductsComponent } from './products/products.component';
 
 
 
 @NgModule({
-  declarations: [
-    DefaultComponent,
-    HomeComponent,
-    HeaderComponent,
-    FooterComponent,
-    SidebarComponent,
-    CategoriesComponent,
-    FeatuerSliderComponent,
-    ProductGridComponent,
-    BannerComponent,
-    BestSellerComponent,
-    HotpicksComponent,
-    PromosComponent,
-    PromoDetailsComponent,
-    ProductCardComponent,
-    UserAccountComponent,
-    TruncateTextPipe,
-    ProductsComponent,
-  ],
+    declarations: [
+        DefaultComponent,
+        HomeComponent,
+        HeaderComponent,
+        FooterComponent,
+        SidebarComponent,
+        CategoriesComponent,
+        FeatuerSliderComponent,
+        ProductGridComponent,
+        BannerComponent,
+        BestSellerComponent,
+        HotpicksComponent,
+        PromosComponent,
+        PromoDetailsComponent,
+        ProductCardComponent,
+        UserAccountComponent,
+        // TruncateTextPipe,
+        ProductsComponent,
+    ],
+    exports: [
+        // TruncateTextPipe
+    ],
     imports: [
         CommonModule,
         SharedModule,

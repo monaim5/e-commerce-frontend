@@ -12,8 +12,9 @@ import {AuthModule} from './auth/auth.module';
     AppRoutingModule,
     AuthModule,
     AdminModule,
-    DefaultModule
+    DefaultModule,
   ],
-  declarations: []
+  declarations: [
+  ]
 })
 export class ComponentsModule { }
