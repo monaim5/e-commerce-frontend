@@ -12,7 +12,7 @@ export interface FieldConfig {
   options?: {value: string; viewValue: string}[];
   collections?: any;
   type: any;
-  hidden?: false;
+  hidden?: boolean;
   value?: any;
   validations?: Validator[];
   service?: string;

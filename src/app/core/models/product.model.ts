@@ -47,6 +47,7 @@ export interface Product {
   available: boolean;
   photos: Photo[];
   categoryId: number;
+
 }
 
 

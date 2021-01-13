@@ -13,7 +13,7 @@ import {AddCategoryComponent} from './components/admin/add-category/add-category
 import {EditProductComponent} from './components/admin/edit-product/edit-product.component';
 import {PromosComponent} from './components/admin/promos/promos.component';
 import {TestComponent} from './components/admin/test/test.component';
-import {EditPromoComponent} from './components/admin/edit-promo/edit-promo.component';
+import {SavePromoComponent} from './components/admin/save-promo/save-promo.component';
 
 const routes: Routes = [
   { path: '', component: DefaultComponent,
@@ -29,7 +29,7 @@ const routes: Routes = [
       { path: 'products', component: AdminProductsComponent },
       { path: 'promos', component: PromosComponent },
       { path: 'test', component: TestComponent },
-      { path: 'editPromo', component: EditPromoComponent },
+      { path: 'editPromo', component: SavePromoComponent },
   ]},
   { path: 'signup', component: SignupComponent },
   { path: 'signin', component: SigninComponent },

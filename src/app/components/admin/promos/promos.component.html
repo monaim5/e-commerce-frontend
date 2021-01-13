@@ -10,20 +10,18 @@
   <mat-tab-group class="m-2" mat-align-tabs="start">
     <mat-tab label="Promo">
       <ng2-smart-table (delete)="deletePromo($event)"
-                       (create)="toggleCreatePromo()"
-                       (edit)="onEdit($event)"
+                       (create)="createOrEditPromo()"
+                       (edit)="createOrEditPromo($event)"
                        [settings]="promoSettings"
                        [source]="promos">
       </ng2-smart-table>
     </mat-tab>
 
     <mat-tab label="Promo Type">
-<!--          <h2>Add promo type</h2>-->
-<!--          <app-dynamic-form #promoTypeForm *ngIf="promoTypeFields !== undefined" [fields]="promoTypeFields"></app-dynamic-form>-->
-<!--          <button mat-raised-button color="primary" (click)="submitPromoType()">Submit</button>-->
+
       <ng2-smart-table (delete)="deletePromoType($event)"
-                       (create)="toggleCreatePromoType()"
-                       (edit)="onEdit($event)"
+                       (create)="createOrEditPromoType()"
+                       (edit)="createOrEditPromoType($event)"
                        [settings]="promoTypeSettings"
                        [source]="promoTypes">
       </ng2-smart-table>

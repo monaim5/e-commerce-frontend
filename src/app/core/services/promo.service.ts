@@ -30,15 +30,19 @@ export class PromoService {
     return this.api.get('/promos/types');
   }
 
+  update(promoPayload: Promo): Observable<any> {
+    return this.api.put('/promos', promoPayload);
+  }
+
   createPromoType(promoType: PromoType): Observable<any> {
     return this.api.post('/promos/types', promoType);
   }
 
-  deletePromoType(name: string): Observable<any> {
-    return this.api.delete( '/promos/types', name);
+  updatePromoType(promoTypePayload: any): Observable<any> {
+    return this.api.put('/promos/types', promoTypePayload);
   }
 
-  update(promoPayload: Promo): Observable<any> {
-    return this.api.put('/promos', promoPayload);
+  deletePromoType(name: string): Observable<any> {
+    return this.api.delete( '/promos/types', name);
   }
 }

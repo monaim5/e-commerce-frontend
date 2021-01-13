@@ -1,3 +1,6 @@
+import {Product} from './product.model';
+import {FieldConfig} from "../../shared/field.interface";
+import {Validators} from "@angular/forms";
 
 export interface PromoType {
   name: string;
@@ -11,18 +14,18 @@ export interface Promo {
   endDate: Date;
   discountAmount: number;
   active: boolean;
-  type: PromoType;
-  productIds: number[];
+  promoType: string;
+  products: Product[];
 }
-export const promoTypeFormFields = [
+export const promoTypeFormFields = (promoType?) => [
   {
-    name: 'name', type: 'input', label: 'Name'
+    name: 'name', type: 'input', label: 'Name', value: promoType?.name
   },
   {
-    name: 'description', type: 'textarea', label: 'Description'
+    name: 'description', type: 'textarea', label: 'Description', value: promoType?.description
   }
 ];
-export const promoFormFields = (promoTypes, promo?) => [
+export const promoFormFields = (promoTypes, promo?): FieldConfig[] => [
   {
     name: 'id', type: 'input', hidden: true, value: promo?.id
   },
@@ -37,8 +40,9 @@ export const promoFormFields = (promoTypes, promo?) => [
     name: 'discountAmount', type: 'input', label: 'Discount Amount', inputType: 'number', value: promo?.discountAmount
   },
   {
-    name: 'type', type: 'select', label: 'Promo Type', value: promo?.type,
-    options: promoTypes.map(promoT => ({value: promoT.name, viewValue: promoT.name}))
+    name: 'promoType', type: 'select', label: 'Promo Type', value: promo?.promoType,
+    options: promoTypes.map(promoT => ({value: promoT.name, viewValue: promoT.name})),
+    validations: [{name: 'required', validator: Validators.required, message: 'Please specify a promo type'}]
   },
   {
     name: 'active', type: 'checkbox', label: 'Active', value: promo?.active

@@ -18,7 +18,7 @@
         <mat-autocomplete #auto="matAutocomplete"
                           autoActiveFirstOption (optionSelected)="onSelectProduct($event)"
                           [displayWith]="getProductName">
-          <mat-option *ngFor="let option of productsObservable | async" [value]="option">
+          <mat-option *ngFor="let option of searchProductsObservable | async" [value]="option">
             {{option.name}}
           </mat-option>
         </mat-autocomplete>

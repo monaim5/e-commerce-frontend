@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Inject, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from '../../../core/services/product.service';
 import {Product} from '../../../core/models/product.model';
 import {Observable} from 'rxjs';
@@ -7,33 +7,39 @@ import {PromoService} from '../../../core/services/promo.service';
 import {FormControl} from '@angular/forms';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {DynamicFormComponent} from '../../shared/dynamic-form/dynamic-form.component';
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-promo',
-  templateUrl: './edit-promo.component.html',
-  styleUrls: ['./edit-promo.component.css']
+  templateUrl: './save-promo.component.html',
+  styleUrls: ['./save-promo.component.css']
 })
-export class EditPromoComponent implements OnInit {
+export class SavePromoComponent implements OnInit, OnDestroy {
 
   @ViewChild('promoForm') promoForm: DynamicFormComponent;
   promoProducts: Product[] = [];
-  productsObservable: Observable<Product[]>;
+  searchProductsObservable: Observable<Product[]>;
+  promo: Promo;
   promoFields;
   searchField = new FormControl();
   getProductName = (prod?) => prod?.name;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public promo: any | null,
+  constructor(@Inject(MAT_DIALOG_DATA) public promoData: any | null,
               private productService: ProductService,
-              private promoService: PromoService) { }
+              private promoService: PromoService,
+              private dialogRef: MatDialogRef<SavePromoComponent>) { }
 
   ngOnInit(): void {
-    this.promo = this.promo.promo;
+    this.promo = this.promoData.data;
     this.promoService.getTypes().subscribe(data => {
       this.promoFields = promoFormFields(data, this.promo);
     });
 
-    this.productsObservable = this.searchField.valueChanges.pipe(
+    if (this.promo) {
+      this.promoProducts = this.promo.products;
+    }
+
+    this.searchProductsObservable = this.searchField.valueChanges.pipe(
       debounceTime(100),
       switchMap(term => this.productService.getByTitleContains(term || 'a')
         .pipe(map(prodList => {
@@ -43,19 +49,20 @@ export class EditPromoComponent implements OnInit {
     );
   }
 
+  ngOnDestroy(): void {
+  }
+
   submitPromo(): void {
     const promoPayload: Promo = this.promoForm.value;
-    promoPayload.productIds = this.promoProducts.map(prod => prod.id);
+    promoPayload.products = this.promoProducts.map(prod => ({
+      id: prod.id, name: null, photos: null, available: null, quantity: null, description: null, designation: null,
+      categoryId: null, price: null, sales: null
+    }));
 
-    if (this.promo) {
-      this.promoService.create(promoPayload).subscribe(data => {
-        console.log(data);
-      });
-    } else {
-      this.promoService.update(promoPayload).subscribe(data => {
-        console.log(data);
-      });
-    }
+    this.promoService.create(promoPayload).subscribe(
+      () => this.dialogRef.close(true),
+      () => this.dialogRef.close(false)
+    );
   }
 
   prodOnPromoProducts(product: Product): boolean {

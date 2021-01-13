@@ -15,7 +15,8 @@ import { AddCategoryComponent } from './add-category/add-category.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import {PromosComponent} from './promos/promos.component';
 import { TestComponent } from './test/test.component';
-import { EditPromoComponent } from './edit-promo/edit-promo.component';
+import { SavePromoComponent } from './save-promo/save-promo.component';
+import {SavePromoTypeComponent} from './save-promo-type/save-promo-type.component';
 
 
 
@@ -30,7 +31,8 @@ import { EditPromoComponent } from './edit-promo/edit-promo.component';
     EditProductComponent,
     PromosComponent,
     TestComponent,
-    EditPromoComponent,
+    SavePromoComponent,
+    SavePromoTypeComponent,
   ],
   imports: [
     ReactiveFormsModule,
