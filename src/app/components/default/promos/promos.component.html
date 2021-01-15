@@ -1,24 +1,42 @@
-<div class="container-fluid p-0">
-  <div class="row m-0 overlay-image"
-       style="background-image:url('../../../../assets/promo.jpg')">
-    <div class="my-auto pl-2">
-      <carousel
-        [cellsToScroll]="1"
-        [cellsToShow]="5"
-        [minSwipeDistance]="5"
-        [loop]="true"
-        [margin]="0"
-        [autoplay]="true"
-        [autoplayInterval]="4000"
-        [transitionDuration]="800"
-        [transitionTimingFunction]="'ease-in-out'"
-        [height]="160"
-        [width]="600">
+<!--<div class="container-fluid p-0">-->
+<!--  <div class="row m-0 overlay-image"-->
+<!--       style="background-image:url('../../../../assets/promo.jpg')">-->
+<!--    <div class="my-auto pl-2">-->
+<!--      <carousel-->
+<!--        [cellsToScroll]="1"-->
+<!--        [cellsToShow]="5"-->
+<!--        [minSwipeDistance]="5"-->
+<!--        [loop]="true"-->
+<!--        [margin]="0"-->
+<!--        [autoplay]="true"-->
+<!--        [autoplayInterval]="4000"-->
+<!--        [transitionDuration]="800"-->
+<!--        [transitionTimingFunction]="'ease-in-out'"-->
+<!--        [height]="160"-->
+<!--        [width]="600">-->
 
-        <app-promo-details *ngFor="let promo of promos" class="carousel-cell"></app-promo-details>
-      </carousel>
-    </div>
+<!--        <app-promo-details *ngFor="let promo of promos" class="carousel-cell"></app-promo-details>-->
+<!--      </carousel>-->
+<!--    </div>-->
 
+<!--  </div>-->
+<!--</div>-->
+<!--</div>-->
+<div class="m-0 p-2 overlay-image" style="background-image:url('../../../../assets/promo.jpg')">
+  <div style="width: 600px;">
+    <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let promo of promos">
+        <ng-container *ngFor="let product of promo.products">
+
+          <ng-template  carouselSlide>
+            <app-promo-details [product]="product" [discount]="promo.discountAmount"></app-promo-details>
+          </ng-template>
+
+        </ng-container>
+      </ng-container>
+
+    </owl-carousel-o>
   </div>
 </div>
-<!--</div>-->
+

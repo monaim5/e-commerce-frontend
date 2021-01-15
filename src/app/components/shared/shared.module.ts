@@ -14,6 +14,8 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {RangePickerComponent} from './range-picker/range-picker';
 import {ItemsListComponent} from './items-list/items-list.component';
 import {TruncateTextPipe} from './truncate-text.pipe';
+import { FileUploaderComponent } from './file-uploader/file-uploader.component';
+import { DiscountPipe } from './discount.pipe';
 
 
 @NgModule({
@@ -28,20 +30,24 @@ import {TruncateTextPipe} from './truncate-text.pipe';
     DynamicFieldDirective,
     DynamicFormComponent,
     ItemsListComponent,
-    TruncateTextPipe
+    TruncateTextPipe,
+    FileUploaderComponent,
+    DiscountPipe
   ],
     exports: [
-      InputComponent,
-      CheckboxComponent,
-      TextareaComponent,
-      ButtonComponent,
-      SelectComponent,
-      RadiobuttonComponent,
-      RangePickerComponent,
-      DynamicFieldDirective,
-      DynamicFormComponent,
-      ItemsListComponent,
-      TruncateTextPipe
+        InputComponent,
+        CheckboxComponent,
+        TextareaComponent,
+        ButtonComponent,
+        SelectComponent,
+        RadiobuttonComponent,
+        RangePickerComponent,
+        DynamicFieldDirective,
+        DynamicFormComponent,
+        ItemsListComponent,
+        TruncateTextPipe,
+        FileUploaderComponent,
+        DiscountPipe
     ],
   imports: [
     CommonModule,

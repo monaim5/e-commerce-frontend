@@ -12,6 +12,7 @@ import {Observable, Subscription} from 'rxjs';
 import {HttpEvent, HttpEventType} from '@angular/common/http';
 import {Validators} from '@angular/forms';
 import {DynamicFormInterface} from '../../shared/dynamic-form.interface';
+import {FileUploaderComponent} from "../../shared/file-uploader/file-uploader.component";
 
 @Component({
   selector: 'app-add-product',
@@ -25,12 +26,13 @@ export class AddProductComponent implements OnInit, OnDestroy, DynamicFormInterf
   categories?: Category[];
   fields;
   inProgressPhotos: Array<{title: string, percentage: Observable<any>}> = [];
-  uploadedPhotos: Photo[] = [];
+
   @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
+  @ViewChild(FileUploaderComponent) fileUploader: FileUploaderComponent;
 
   constructor(private productService: ProductService,
               private categoryService: CategoryService,
-              private photoService: PhotoService) { }
+              public photoService: PhotoService) { }
 
   ngOnInit(): void {
     this.subscriptions.push(
@@ -47,34 +49,10 @@ export class AddProductComponent implements OnInit, OnDestroy, DynamicFormInterf
 
   submit(event: any): void {
     this.productPayload = this.form.value;
-    this.productPayload.photos = this.uploadedPhotos;
-    console.log(this.productPayload);
+    this.productPayload.photos = this.fileUploader.files;
     this.subscriptions.push(
       this.productService.create(this.productPayload).subscribe(data => {
       })
     );
   }
-
-  onFileSelected(files: FileList): void {
-    this.inProgressPhotos.push({
-        title: files.item(0).name,
-        percentage: this.photoService.upload({
-          id: null,
-          url: null,
-          productId: null,
-          title: files.item(0).name,
-          file: files.item(0)
-        }).pipe(map((event: HttpEvent<any>) => {
-            switch (event.type) {
-              case(HttpEventType.UploadProgress):
-                return Math.round((event.loaded / event.total) * 100);
-              case (HttpEventType.Response):
-                console.log(event.body);
-                this.uploadedPhotos.push(event.body);
-                return 100;
-            }})),
-      }
-    );
-  }
-
 }

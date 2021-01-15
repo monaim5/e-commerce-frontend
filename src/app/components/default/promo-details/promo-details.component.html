@@ -1,9 +1,14 @@
 <div class="bg-white p-1" style="width: 110px">
   <div class="overlay-image"
+       [style.background-image]="'url(\'' + product.photos[0]?.url + '\')'"
        style="background-image:url('../../../../assets/miniature.jpg')"></div>
   <div class="col" style="text-align: center">
-    <span class="row badge-danger mybadge">US $0.89</span>
-    <span class="row badge-pill mybadge"><s>US $2.89</s></span>
+    <span class="row badge-danger mybadge">
+      <strong>{{((discount) ? (product.price | discount: discount) : product.price) | currency:'USD':'symbol' }}</strong>
+    </span>
+    <span *ngIf="discount" class="row badge-pill mybadge">
+      <s>{{product.price | currency:'USD':'symbol'}}</s>
+    </span>
   </div>
 <!--  <span matBadge="hello therer" class="row-2 stretch-badge"></span>-->
 </div>

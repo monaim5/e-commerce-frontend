@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit, HasSidenav {
   ngOnInit(): void {
     this.productSubscription = this.productService.getAll().subscribe((data: Array<Product> ) => {
       this.products = data;
-      console.log(this.products);
     });
   }
   AddProduct(id: number): void {

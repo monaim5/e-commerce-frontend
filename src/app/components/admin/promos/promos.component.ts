@@ -29,7 +29,7 @@ export class PromosComponent implements OnInit, OnDestroy {
       startDate: {title: 'Start Date'},
       endDate: {title: 'End Date', type: 'Date'},
       discountAmount: {title: 'Discount Amount'},
-      type: {title: 'Promo Type'}
+      promoType: {title: 'Promo Type'}
     },
     edit: {editButtonContent: 'Edit'},
   };
@@ -50,6 +50,7 @@ export class PromosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.promoService.getAll().subscribe(data => {
       this.promos = data;
+      console.log(this.promos);
     });
 
     this.promoService.getTypes().subscribe(data => {

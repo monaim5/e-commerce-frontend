@@ -6,26 +6,9 @@
 
 
     <div class="mt-2">
-      <input #fileUploader hidden (change)="onFileSelected(fileUploader.files)" type="file">
-      <button mat-raised-button color="accent" (click)="fileUploader.click()">Upload file</button>
-      <div fxLayout="column" *ngFor="let photo of inProgressPhotos">
-        <mat-card class="mt-2" *ngIf=" photo.percentage | async as res">
-          <mat-card-subtitle>
-            {{ photo.title }}
-          </mat-card-subtitle>
-          <mat-card-content>
-            <mat-progress-bar mode="determinate" [value]="res"></mat-progress-bar>
-          </mat-card-content>
-        </mat-card>
-      </div>
+      <app-file-uploader [service]="photoService" [uploadMethod]="'upload'"></app-file-uploader>
     </div>
 
     <button class="mt-2" mat-raised-button color="primary" (click)="submit($event)">submit</button>
   </div>
-
-
-
-<!--  <input #fileUploader id="singleFile" type="file"-->
-<!--         [multiple]="true"-->
-<!--         (change)="onFileSelected(fileUploader.files)"/>-->
 </div>

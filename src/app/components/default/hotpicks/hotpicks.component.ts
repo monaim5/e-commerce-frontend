@@ -16,7 +16,6 @@ export class HotpicksComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getHotPicks().subscribe(data => {
       this.products = data;
-      console.log(this.products);
     });
   }
 

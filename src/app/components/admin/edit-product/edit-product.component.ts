@@ -47,7 +47,6 @@ export class EditProductComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(
       this.productService.getById(this.currentId).subscribe(data => {
-        console.log(data);
         this.product = data;
         this.fields = productFormFields(this.categories, this.product);
       }, error => {

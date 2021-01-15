@@ -8,6 +8,8 @@ import {FormControl} from '@angular/forms';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {DynamicFormComponent} from '../../shared/dynamic-form/dynamic-form.component';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {PhotoService} from "../../../core/services/photo.service";
+import {FileUploaderComponent} from "../../shared/file-uploader/file-uploader.component";
 
 @Component({
   selector: 'app-edit-promo',
@@ -17,6 +19,7 @@ import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 export class SavePromoComponent implements OnInit, OnDestroy {
 
   @ViewChild('promoForm') promoForm: DynamicFormComponent;
+  @ViewChild('fileUploader') fileUploader: FileUploaderComponent;
   promoProducts: Product[] = [];
   searchProductsObservable: Observable<Product[]>;
   promo: Promo;
@@ -27,6 +30,7 @@ export class SavePromoComponent implements OnInit, OnDestroy {
   constructor(@Inject(MAT_DIALOG_DATA) public promoData: any | null,
               private productService: ProductService,
               private promoService: PromoService,
+              public photoService: PhotoService,
               private dialogRef: MatDialogRef<SavePromoComponent>) { }
 
   ngOnInit(): void {
@@ -42,10 +46,7 @@ export class SavePromoComponent implements OnInit, OnDestroy {
     this.searchProductsObservable = this.searchField.valueChanges.pipe(
       debounceTime(100),
       switchMap(term => this.productService.getByTitleContains(term || 'a')
-        .pipe(map(prodList => {
-            return prodList.filter(prod => !this.prodOnPromoProducts(prod));
-          })
-        )),
+        .pipe(map(prodList => prodList.filter(prod => !this.prodOnPromoProducts(prod)))))
     );
   }
 
@@ -58,11 +59,19 @@ export class SavePromoComponent implements OnInit, OnDestroy {
       id: prod.id, name: null, photos: null, available: null, quantity: null, description: null, designation: null,
       categoryId: null, price: null, sales: null
     }));
+    promoPayload.banners = this.fileUploader.files;
 
-    this.promoService.create(promoPayload).subscribe(
-      () => this.dialogRef.close(true),
-      () => this.dialogRef.close(false)
-    );
+    if (this.promo) {
+      this.promoService.update(this.promo.id, promoPayload).subscribe(
+        () => this.dialogRef.close(true),
+        () => this.dialogRef.close(false)
+      );
+    } else {
+      this.promoService.create(promoPayload).subscribe(
+        () => this.dialogRef.close(true),
+        () => this.dialogRef.close(false)
+      );
+    }
   }
 
   prodOnPromoProducts(product: Product): boolean {
