@@ -1,16 +1,25 @@
 <mat-toolbar style="background-color: white"
-             fxLayout="row"
+             fxLayout.lt-sm="column"
              fxLayoutAlign="space-between center">
 
-  <button mat-icon-button (click)="FireMenuClickedEvent()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <div hide.xs>
-    <a mat-button routerLink=""> Home </a>
-    <a mat-button routerLink="videos"> Videos </a>
-    <a mat-button routerLink="inputs"> Inputs </a>
-    <a mat-button routerLink="subtitles"> Subtitles </a>
+  <mat-toolbar-row fxLayout="row"
+                   fxLayoutAlign="start center">
 
-  </div>
+    <button mat-icon-button (click)="FireMenuClickedEvent()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>LOGO</span>
+  </mat-toolbar-row>
+
+  <mat-toolbar-row fxLayout="row"
+                   fxLayoutAlign="end center"
+                   fxLayoutAlign.lt-sm="space-between center">
+
+      <a mat-button routerLink=""> Home </a>
+      <a mat-button routerLink="videos"> Videos </a>
+      <a mat-button routerLink="inputs"> Inputs </a>
+      <a mat-button routerLink="subtitles"> Subtitles </a>
+
+  </mat-toolbar-row>
 </mat-toolbar>
 

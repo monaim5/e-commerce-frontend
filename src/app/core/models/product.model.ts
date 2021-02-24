@@ -3,7 +3,7 @@ import {Validators} from "@angular/forms";
 
 export const productFormFields = (categories, product?) => [
   {
-    name: 'name', type: 'input', inputType: 'text', label: 'Name', value: product?.name,
+    name: 'title', type: 'input', inputType: 'text', label: 'Title', value: product?.name,
     validations: [
       {
         name: 'required',
@@ -38,7 +38,7 @@ export const productFormFields = (categories, product?) => [
 
 export interface Product {
   id: number;
-  name: string;
+  title: string;
   designation: string;
   description: string;
   price: number;

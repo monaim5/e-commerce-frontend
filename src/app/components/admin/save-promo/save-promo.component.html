@@ -21,7 +21,7 @@
                           [displayWith]="getProductName">
           <mat-option *ngFor="let product of searchProductsObservable | async" [value]="product">
             <img [src]="product.photos[0].url" class="ml-1" alt="noPh"
-                 style="height: 35px; width: 35px;">{{product.name}}
+                 style="height: 35px; width: 35px;">{{product.title}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>

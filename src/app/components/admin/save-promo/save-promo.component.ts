@@ -56,7 +56,7 @@ export class SavePromoComponent implements OnInit, OnDestroy {
   submitPromo(): void {
     const promoPayload: Promo = this.promoForm.value;
     promoPayload.products = this.promoProducts.map(prod => ({
-      id: prod.id, name: null, photos: null, available: null, quantity: null, description: null, designation: null,
+      id: prod.id, title: null, photos: null, available: null, quantity: null, description: null, designation: null,
       categoryId: null, price: null, sales: null
     }));
     promoPayload.banners = this.fileUploader.files;

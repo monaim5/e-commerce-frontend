@@ -28,16 +28,20 @@ export class FeaturesSliderComponent implements OnInit {
       0: {
         items: 1
       },
-      400: {
+      1100: {
         items: 2
-      },
-      740: {
-        items: 1
-      },
-      940: {
-        items: 4
       }
     }
+    //   400: {
+    //     items: 1
+    //   },
+    //   740: {
+    //     items: 1
+    //   },
+    //   940: {
+    //     items: 1
+    //   }
+    // }
   };
 
   constructor(private promoService: PromoService) { }
