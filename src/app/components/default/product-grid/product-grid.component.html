@@ -1,8 +1,14 @@
-<div  class="w-100 py-3">
-  <h2>Products</h2>
-  <div style="font-size: 1.1rem" fxLayout="row wrap" fxLayoutGap="20px" fxLayoutAlign="space-between">
-    <app-product-card class="mb-4" *ngFor="let product of products"
+<div class="w-100 py-3">
+  <h4>Products</h4>
+  <div fxLayout="row wrap" fxLayoutAlign="space-between start">
+
+    <app-product-card *ngFor="let product of products"
+                      style="font-size: 1.1rem; margin: 1% 0"
+                      fxFlex="49%"
+                      fxFlex.sm="32%"
+                      fxFlex.gt-sm="19%"
                       [product]="product"
-                      [height]="'150px'" [width]="'150px'" [addToCart]="true"></app-product-card>
+                      [height]="'5'" [width]="'5'" [addToCart]="true"></app-product-card>
+
   </div>
 </div>

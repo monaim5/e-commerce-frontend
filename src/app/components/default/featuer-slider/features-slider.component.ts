@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Promo} from '../../../core/models/promo.model';
 import {PromoService} from '../../../core/services/promo.service';
-import {OwlOptions} from "ngx-owl-carousel-o";
+import {OwlOptions} from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'app-featuer-slider',
@@ -18,20 +18,21 @@ export class FeaturesSliderComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: false,
+    dots: true,
     navSpeed: 1000,
     autoplay: true,
-    mergeFit: true,
+    // mergeFit: true,
     nav: false,
+    items: 1
     // navText: ['ssssss', ''],
-    responsive: {
-      0: {
-        items: 1
-      },
-      1100: {
-        items: 2
-      }
-    }
+    // responsive: {
+    //   0: {
+    //     items: 1
+    //   },
+    //   1100: {
+    //     items: 1
+    //   }
+    // }
     //   400: {
     //     items: 1
     //   },

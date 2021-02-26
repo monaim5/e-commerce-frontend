@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Product} from "../../../core/models/product.model";
-import {ProductService} from "../../../core/services/product.service";
-import {Subscription} from "rxjs";
+import {Product} from '../../../core/models/product.model';
+import {ProductService} from '../../../core/services/product.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-product-grid',

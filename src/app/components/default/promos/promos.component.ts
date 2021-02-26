@@ -30,13 +30,13 @@ export class PromosComponent implements OnInit, OnDestroy {
     // navText: ['ssssss', ''],
     responsive: {
       400: {
-        items: 3
+        items: 4
       },
       740: {
         items: 5
       },
       940: {
-        items: 5
+        items: 6
       }
     }
   };

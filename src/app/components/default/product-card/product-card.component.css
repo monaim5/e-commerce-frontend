@@ -1,21 +1,29 @@
-/*.overlay-image {*/
-/*  height: 11rem;*/
-/*  background: #777 center;*/
-/*  border-radius: 8px;*/
-/*  background-size:100% auto;*/
-/*}*/
-
-.overlay-image {
-  background: #777 center;
-  background-size: cover;
-  border: 1px solid white;
+.square {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  max-height:100%;
+  max-width:100%;
+  /*text-align: center;*/
+  /*display: flex;*/
+  /*align-items: center;*/
+  /*justify-content: center;*/
+  object-fit: contain
 }
 
-/*.stretch-badge > .mat-badge-content {*/
-/*  width: auto;*/
-/*  border-radius: 13px;*/
-/*  right: initial !important;*/
-/*}*/
+.square-container {
+  position: relative;
+  max-width: 100%;
+  /*margin: 5px;*/
+}
+
+.square-container:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+  /* initial ratio of 1:1*/
+}
 
 .border-red {
   border: 1px solid red;

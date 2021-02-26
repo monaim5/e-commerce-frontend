@@ -38,13 +38,18 @@
 <!--      </carousel>-->
 <!--    </div>-->
 <!--  </div>-->
-<div #carouselContainer>
 <!--  width is : {{carouselContainer.offsetWidth}}-->
   <owl-carousel-o [options]="customOptions">
     <ng-container *ngFor="let promo of promos">
       <ng-template carouselSlide>
-        <img [src]="promo.banners[0].url" [style.width]="carouselContainer.offsetWidth + 'px'" alt="banner" [title]="'hello there'">
+        <div class="w-100">
+          <img [src]="promo.banners[0].url"
+
+               alt="banner" [title]="'hello there'">
+          <!--             [style.width]="carouselContainer.offsetWidth + 'px'"-->
+
+        </div>
+
       </ng-template>
     </ng-container>
   </owl-carousel-o>
-</div>

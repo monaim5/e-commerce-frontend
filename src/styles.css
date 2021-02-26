@@ -1,10 +1,19 @@
 /*!* You can add global styles to this file, and also import other style files *!*/
-
+html {
+  font-size: 12px;
+}
 *{
   padding: 0;
   margin: 0;
 }
 button:focus { outline: none; }
+.main {background: #f2f2f2}
+
+@media screen and (min-width: 959px) {
+  html {
+    font-size: 14px;
+  }
+}
 /*  box-sizing: border-box;*/
 /*}*/
 /*body{*/

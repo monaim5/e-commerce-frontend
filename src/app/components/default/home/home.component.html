@@ -1,5 +1,4 @@
 <div class="container-fluid p-0">
-<!--  <div class="row">-->
   <mat-sidenav-container class="bg-info px-3"
                          style="background-image:url('../../../../assets/lovepik.jpg');
                                 background-size: 100% auto">
@@ -7,59 +6,29 @@
     <mat-sidenav class="brd my-3" [style.width]="'200px'" [opened]="sidenavOpened" mode="side" fxHide.lt-lg>
       <app-categories></app-categories>
     </mat-sidenav>
-toFlexlayout branch
-    <mat-sidenav-content>
-      <div class="container-fluid brd">
-        <div class="row py-3">
-          <div class="col-md-12 col-lg-9 p-0 d-flex flex-column justify-content-between">
-            <div class="row-7 h-100">
-              <app-featuer-slider></app-featuer-slider>
-            </div>
-            <div class="row-5 mt-3">
-              <app-promos></app-promos>
-            </div>
-          </div>
-          <div class="d-none d-lg-block col brd p-3 ml-3 bg-white">
-            <div class="d-flex flex-column justify-content-between h-100">
-              <app-user-account class="row-4"></app-user-account>
-              <mat-divider class="row-1 my-3"></mat-divider>
-              <app-hotpicks class="row-7 h-100"></app-hotpicks>
-            </div>
-          </div>
-        </div>
+
+    <mat-sidenav-content class="py-3" fxLayout="row" fxLayoutAlign="space-around stretch"
+                         fxLayoutAlign.gt-md="space-evenly stretch" fxLayout.lt-md="column">
+      <div fxFlex="75%">
+        <app-featuer-slider></app-featuer-slider>
+        <mat-divider class="m-2"></mat-divider>
+        <app-promos></app-promos>
+      </div>
+      <div fxFlex="20%" fxHide.lt-md fxLayout="column">
+        <app-user-account></app-user-account>
+        <mat-divider class="m-2"></mat-divider>
+        <app-hotpicks fxFlex="grow"></app-hotpicks>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
 
-<!--  <div class="col-2" style="border: 2px black solid">-->
-<!--      <app-categories></app-categories>-->
-<!--    </div>-->
-
-<!--    <div class="col-10">-->
-<!--      <div class="container-fluid">-->
-<!--        <div class="row">-->
-<!--          <div class="col-9 p-0" style="border: 2px blue solid">-->
-<!--            <div class="row-7" style="border: 2px green solid">-->
-<!--              <app-featuer-slider></app-featuer-slider>-->
-<!--            </div>-->
-<!--            <div class="row-5" style="border: 2px green solid">-->
-<!--              <app-promos></app-promos>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--          <div class="col-3 p-0" style="border: 2px blue solid">-->
-<!--            <app-hotpicks></app-hotpicks>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
   </div>
+<!--<div class="container">-->
+<!--  <app-banner class="w-100" [bg]="'black'" [category]="'Toys'"></app-banner>-->
+<!--  <app-banner class="w-100" [bg]="'black'" [category]="'clothes'"></app-banner>-->
+<!--  <app-banner class="w-100" [category]="'phones'"></app-banner>-->
 <!--</div>-->
-<div class="container">
-  <app-banner class="w-100" [bg]="'black'" [category]="'Toys'"></app-banner>
-  <app-banner class="w-100" [bg]="'black'" [category]="'clothes'"></app-banner>
-  <app-banner class="w-100" [category]="'phones'"></app-banner>
-</div>
-<div class="container">
+<div class="container-fluid">
   <app-product-grid></app-product-grid>
 </div>
 <app-footer></app-footer>
