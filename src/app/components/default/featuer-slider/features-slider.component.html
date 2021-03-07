@@ -39,7 +39,7 @@
 <!--    </div>-->
 <!--  </div>-->
 <!--  width is : {{carouselContainer.offsetWidth}}-->
-<div #carouselContainer>
+<div *ngIf="promos.length > 1">
   <owl-carousel-o [options]="customOptions" (change)="hello($event)">
     <ng-container *ngFor="let promo of promos">
       <ng-template carouselSlide>

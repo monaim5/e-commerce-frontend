@@ -32,7 +32,7 @@ export class SigninComponent implements OnInit {
     this.signinPayload.password = this.signupForm.get('password').value;
 
     this.authService.signin(this.signinPayload).subscribe(data => {
-      console.log(data);
+      console.log(typeof data);
     });
   }
 

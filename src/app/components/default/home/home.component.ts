@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit, HasSidenav {
     });
   }
   AddProduct(id: number): void {
-  //   this.cartService.AddProductToCart(id);
+    //   this.cartService.AddProductToCart(id);
   }
   selectProduct(id: number): void{
     this.router.navigate(['/product', id]).then();

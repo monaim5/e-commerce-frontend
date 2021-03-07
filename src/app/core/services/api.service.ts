@@ -19,11 +19,11 @@ export class ApiService {
   }
 
   post(path, payload: any): Observable<any> {
-    return this.http.post(`${this.host}${path}`, payload, {responseType: 'text'});
+    return this.http.post(`${this.host}${path}`, payload);
   }
 
   put(path, payload: any): Observable<any> {
-    return this.http.put(`${this.host}${path}`, payload, {responseType: 'text'});
+    return this.http.put(`${this.host}${path}`, payload);
   }
 
   delete(path: string, id: number | string): Observable<any> {

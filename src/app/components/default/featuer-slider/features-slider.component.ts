@@ -10,10 +10,10 @@ import {OwlOptions} from 'ngx-owl-carousel-o';
 })
 export class FeaturesSliderComponent implements OnInit {
 
-  promos: Promo[];
+  promos: Promo[] = [];
   images: any;
   customOptions: OwlOptions;
-  @ViewChild('carouselContainer') carouselContainer: ElementRef;
+  // @ViewChild('carouselContainer') carouselContainer: ElementRef;
 
 
   constructor(private promoService: PromoService) { }
@@ -30,12 +30,12 @@ export class FeaturesSliderComponent implements OnInit {
       touchDrag: true,
       pullDrag: true,
       dots: true,
-      navSpeed: 1000,
+      navSpeed: 10000,
       autoplay: true,
 
-      margin: 10,
-      stagePadding: 0,
-      startPosition: 200,
+      // margin: 10,
+      // stagePadding: 0,
+      // startPosition: 200,
 
       responsive: {
         0: {
@@ -43,13 +43,12 @@ export class FeaturesSliderComponent implements OnInit {
           nav: false
         },
         600: {
-          items: 2,
+          items: 1,
           responsiveRefreshRate: 1
         },
         1000: {
-          items: 3,
-          nav: false,
-          loop: false
+          items: 1,
+          responsiveRefreshRate: 1,
         }
       }
 
@@ -81,6 +80,6 @@ export class FeaturesSliderComponent implements OnInit {
   }
 
   hello(event): void {
-    console.log(this.carouselContainer);
+    console.log('carousel has changed');
   }
 }
