@@ -6,6 +6,7 @@ import {FormGroup} from '@angular/forms';
   selector: 'app-select',
   template: `
     <mat-form-field appearance="outline" [formGroup]="group">
+      <mat-label>{{field.label}}</mat-label>
       <mat-select [placeholder]="field.label" [formControlName]="field.name">
         <mat-option *ngFor="let item of field.options" [value]="item.value">{{item.viewValue}}</mat-option>
       </mat-select>

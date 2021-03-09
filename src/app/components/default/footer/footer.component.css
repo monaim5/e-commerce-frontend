@@ -1,0 +1,52 @@
+ul {
+  list-style-type: none;
+}
+li {
+  padding: .3rem 0;
+}
+a {
+  color: unset;
+}
+button > span > span {
+  font-weight: bolder;
+  color: red;
+}
+
+.footerButton {
+  border: .5px #3a4553 solid;
+  margin: 0 .5rem;
+  font-weight: lighter
+}
+
+/*.mat-select-value {*/
+/*  color: rgba(0,0,222,.87) !important;*/
+/*}*/
+
+/*.mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple) {*/
+/*  background: rgba(255,0,0,.12);*/
+/*}*/
+/*::ng-deep .mat-select-value{*/
+/*  color: white!important;  }*/
+/*.mat-form-field-appearance-outline .mat-form-field-outline {*/
+/*  color: white;*/
+/*}*/
+.footerHeader:hover {
+  background: #3b4b5d;
+  cursor: pointer;
+}
+.footerColHeader {
+  font-size: 1.1rem;
+  font-weight: bolder;
+  padding: .5rem 0;
+}
+.footerHeader {
+  background: #37475a;
+  text-align: center;
+  padding: 1.2rem 0;
+}
+.mat-divider {
+  border-top-color: #3a4553;
+}
+.footerColor2 {
+  background: #131A22;
+}
