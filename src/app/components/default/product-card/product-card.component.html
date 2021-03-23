@@ -1,9 +1,9 @@
 
 <mat-card *ngIf="product.photos[0]" class="p-2">
   <mat-card-content>
+    <!--    image-->
     <div fxLayout="column" fxLayoutAlign="center" class="square-container">
-      <img [src]="product.photos[0].url" class="square"
-           alt="no such photo">
+      <img [src]="product.photos[0].url" class="square" alt="no such photo">
 
       <!--    <div class="w-100 pb-1" fxLayout="row wrap" fxLayoutAlign="space-around start" style="margin-top: -0.8em">-->
       <!--      <div  class="text-center badge-danger mybadge border-red">{{product.price | currency:'USD':'symbol'}}</div>-->
@@ -11,12 +11,25 @@
       <!--    </div>-->
 
     </div>
-    <p [title]="product.title"
-         style="font-size: 1rem;max-width: 100%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">
-      {{ product.title }}</p>
-    <div style="font-size: 1.3rem; font-weight: bolder">{{product.price | currency:'USD':'symbol'}}</div>
-    <div style="font-size: 1.1rem; font-weight: lighter; color: rgb(153, 153, 153);"><s>US $2.89</s> | <span>-99%</span></div>
-    <div style="font-size: 1rem; font-weight: lighter; color: rgb(153, 153, 153);">300 sold</div>
+
+    <!--    title-->
+    <p [title]="product.title" class="title">{{ product.title }}</p>
+
+    <!--    price-->
+    <div class="primary">
+      {{product.price | currency:'USD':'symbol'}}
+    </div>
+
+    <!--    promo-->
+    <div class="secondary"><s>US $2.89</s> | <span>-99%</span></div>
+
+    <!--    sold-->
+    <div class="secondary2">
+      {{product.sales}} sold
+    </div>
+
+    <!--    Add To Cart-->
+
   </mat-card-content>
 <!--  <mat-card-actions class="pb-2" fxLayoutAlign="center center">-->
 <!--    <div class="py-2" *ngIf="addToCart">-->

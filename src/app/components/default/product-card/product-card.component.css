@@ -21,9 +21,9 @@
   /* initial ratio of 1:1*/
 }
 
-.border-red {
-  border: 1px solid red;
-}
+/*.border-red {*/
+/*  border: 1px solid red;*/
+/*}*/
 .mybadge {
   font-size: 1em;
   /*position: relative;*/
@@ -32,7 +32,25 @@
   border-radius: 13px;
   padding: 3px;
   /*margin-bottom: 0.01em;*/
+}
 
-
-
+.title {
+  /*font-size: 1rem;*/
+  /*max-width: 100%;*/
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.primary {
+  font-size: 1.3rem;
+  font-weight: bolder;
+}
+.secondary {
+  font-size: 1.2rem;
+  color: rgb(153, 153, 153);
+  font-weight: lighter
+}
+.secondary2 {
+  color: rgb(153, 153, 153);
+  font-size: 1rem;
 }
