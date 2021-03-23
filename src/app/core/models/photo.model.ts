@@ -1,8 +1,10 @@
+import {Product} from "./product.model";
+
 export interface Photo {
   id: number;
-  productId: number;
+  product: Product;
   title: string;
   url: string;
-  file: File;
+  fileId: number;
 
 }

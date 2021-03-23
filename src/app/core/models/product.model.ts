@@ -1,5 +1,9 @@
 import {Photo} from './photo.model';
 import {Validators} from "@angular/forms";
+import {CartItem} from "./CartItem.model";
+import {OrderItem} from "./OrderItem.model";
+import {Category} from "./category.model";
+import {Promo} from "./promo.model";
 
 export const productFormFields = (categories, product?) => [
   {
@@ -41,12 +45,19 @@ export interface Product {
   title: string;
   designation: string;
   description: string;
-  price: number;
+  grossPrice: number;
   sales?: number;
   quantity: number;
   available: boolean;
-  photos: Photo[];
+  VATRate: number;
+  rate: number;
+  netPrice: number;
   categoryId: number;
+  photos: Photo[];
+  cartItems: CartItem[];
+  orderItems: OrderItem[];
+  category: Category;
+  promo: Promo;
 
 }
 

@@ -2,6 +2,7 @@ import {Product} from './product.model';
 import {FieldConfig} from '../../shared/field.interface';
 import {Validators} from '@angular/forms';
 import {Photo} from './photo.model';
+import {Banner} from "./Banner.model";
 
 export interface PromoType {
   name: string;
@@ -15,9 +16,9 @@ export interface Promo {
   endDate: Date;
   discountAmount: number;
   active: boolean;
-  promoType: string;
   products: Product[];
-  banners: Photo[];
+  promoType: PromoType;
+  banners: Banner[];
 }
 export const promoTypeFormFields = (promoType?) => [
   {

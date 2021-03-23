@@ -4,10 +4,10 @@
        style="background-image:url('../../../../assets/miniature.jpg')"></div>
   <div class="col" style="text-align: center">
     <span class="row badge-danger mybadge">
-      <strong>{{((discount) ? (product.price | discount: discount) : product.price) | currency:'USD':'symbol' }}</strong>
+      <strong>{{((discount) ? (product.grossPrice | discount: discount) : product.grossPrice) | currency:'USD':'symbol' }}</strong>
     </span>
     <span *ngIf="discount" class="row badge-pill mybadge">
-      <s>{{product.price | currency:'USD':'symbol'}}</s>
+      <s>{{product.grossPrice | currency:'USD':'symbol'}}</s>
     </span>
   </div>
 <!--  <span matBadge="hello therer" class="row-2 stretch-badge"></span>-->
