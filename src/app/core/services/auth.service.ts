@@ -14,20 +14,28 @@ export class AuthService {
   constructor(private apiService: ApiService,
               private localStorage: LocalStorageService) { }
 
-  private storeAuthData(response: AuthenticationResponse): void{
+  private static storeAuthData(response: AuthenticationResponse): void{
     localStorage.setItem('authenticationToken', response.authenticationToken);
     localStorage.setItem('refreshToken', response.refreshToken);
     localStorage.setItem('username', response.username);
     // localStorage.setItem('expiresAt', response.expiresAt.format());
   }
 
-  signup(signupPayload: SignupPayload): Observable<any>{
-    return this.apiService.post('/auth/signup', signupPayload);
+  private static getUsername(): string {
+    return localStorage.getItem('username');
   }
 
-  signin(signinPayload: SigninPayload): Observable<AuthenticationResponse>{
-    return this.apiService.post('/auth/signin', signinPayload).pipe(
-      tap(this.storeAuthData)
+  private static getRefreshToken(): string {
+    return localStorage.getItem('refreshToken');
+  }
+
+  signup(signupPayload: SignupPayload): Observable<any>{
+    return this.apiService.post<string>('/auth/signup', signupPayload);
+  }
+
+  signin(signinPayload: SigninPayload): Observable<any>{
+    return this.apiService.post<AuthenticationResponse>('/auth/signin', signinPayload).pipe(
+      tap(AuthService.storeAuthData)
     );
   }
 
@@ -35,19 +43,12 @@ export class AuthService {
     return localStorage.getItem('authenticationToken');
   }
 
-  private getUsername(): string {
-    return localStorage.getItem('username');
-  }
-
-  private getRefreshToken(): string {
-    return localStorage.getItem('refreshToken');
-  }
-
-  refreshToken(): Observable<AuthenticationResponse> {
+  refreshToken(): Observable<any> {
     const refreshTokenPayload = {
-      refreshToken: this.getRefreshToken(),
-      username: this.getUsername()
+      refreshToken: AuthService.getRefreshToken(),
+      username: AuthService.getUsername()
     };
-    return  this.apiService.post('/auth/refreshToken', refreshTokenPayload).pipe(tap(this.storeAuthData));
+    return  this.apiService.post<AuthenticationResponse>('/auth/refreshToken', refreshTokenPayload)
+      .pipe(tap(AuthService.storeAuthData));
   }
 }

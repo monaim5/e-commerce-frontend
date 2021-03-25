@@ -1,23 +1,36 @@
 <mat-card class="p-0">
   <mat-tab-group class="m-2" mat-align-tabs="start">
     <mat-tab label="Promo">
-      <ng2-smart-table (delete)="deletePromo($event)"
-                       (create)="createOrEditPromo()"
-                       (edit)="createOrEditPromo($event)"
-                       [settings]="promoSettings"
-                       [source]="promos">
-      </ng2-smart-table>
+      <ng-container *ngIf="(promos$ | async) as payload" [ngSwitch]="payload.stat">
+        <ng-container *ngSwitchCase="DataStat.LOADED">
+          <ng2-smart-table
+            (delete)="deletePromo($event)"
+            (create)="createOrEditPromo()"
+            (edit)="createOrEditPromo($event)"
+            [settings]="promoSettings"
+            [source]="payload.data">
+          </ng2-smart-table>
+        </ng-container>
+      </ng-container>
+
     </mat-tab>
 
-    <mat-tab label="Promo Type">
 
-      <ng2-smart-table (delete)="deletePromoType($event)"
-                       (create)="createOrEditPromoType()"
-                       (edit)="createOrEditPromoType($event)"
-                       [settings]="promoTypeSettings"
-                       [source]="promoTypes">
-      </ng2-smart-table>
+    <mat-tab label="Promo Type">
+      <ng-container *ngIf="(promoTypes$ | async) as payload" [ngSwitch]="payload.stat">
+        <ng-container *ngSwitchCase="DataStat.LOADING"> LOADING... </ng-container>
+        <ng-container *ngSwitchCase="DataStat.ERROR"> ERROR : {{payload.error.message}} </ng-container>
+        <ng-container *ngSwitchCase="DataStat.LOADED">
+          <ng2-smart-table (delete)="deletePromoType($event)"
+                           (create)="createOrEditPromoType()"
+                           (edit)="createOrEditPromoType($event)"
+                           [settings]="promoTypeSettings"
+                           [source]="payload.data">
+          </ng2-smart-table>
+        </ng-container>
+      </ng-container>
     </mat-tab>
   </mat-tab-group>
 
 </mat-card>
+

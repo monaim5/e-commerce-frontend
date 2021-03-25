@@ -53,26 +53,33 @@ export class SavePromoComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
   }
 
-  submitPromo(): void {
-    const promoPayload: Promo = this.promoForm.value;
-    promoPayload.products = this.promoProducts.map(prod => ({
-      id: prod.id, title: null, photos: null, available: null, quantity: null, description: null, designation: null,
-      categoryId: null, grossPrice: null, sales: null
-    }));
-    promoPayload.banners = this.fileUploader.files;
+  addProduct(): void {
 
-    if (this.promo) {
-      this.promoService.update(this.promo.id, promoPayload).subscribe(
-        () => this.dialogRef.close(true),
-        () => this.dialogRef.close(false)
-      );
-    } else {
-      this.promoService.create(promoPayload).subscribe(
-        () => this.dialogRef.close(true),
-        () => this.dialogRef.close(false)
-      );
-    }
   }
+
+  deleteProduct(): void {
+
+  }
+
+  // submitPromo(): void {
+  //   const promoPayload: Promo = this.promoForm.value;
+  //   promoPayload.products = this.promoProducts.map(prod => ({
+  //     id: prod.id
+  //   }));
+  //   promoPayload.banners = this.fileUploader.files;
+  //
+  //   if (this.promo) {
+  //     this.promoService.update(this.promo.id, promoPayload).subscribe(
+  //       () => this.dialogRef.close(true),
+  //       () => this.dialogRef.close(false)
+  //     );
+  //   } else {
+  //     this.promoService.create(promoPayload).subscribe(
+  //       () => this.dialogRef.close(true),
+  //       () => this.dialogRef.close(false)
+  //     );
+  //   }
+  // }
 
   prodOnPromoProducts(product: Product): boolean {
     return !!this.promoProducts.find(prod => prod.id === product.id);

@@ -11,11 +11,11 @@ export class CategoryService {
   constructor(private apiService: ApiService) { }
 
   getAll(): Observable<any> {
-    return this.apiService.get('/category');
+    return this.apiService.get<Category[]>('/category');
   }
 
   create(category: Category): Observable<any> {
-    return this.apiService.post('/category', category);
+    return this.apiService.post<Category>('/category', category);
   }
 
 }

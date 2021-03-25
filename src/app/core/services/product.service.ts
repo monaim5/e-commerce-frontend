@@ -11,32 +11,32 @@ export class ProductService {
 
   constructor(private api: ApiService) { }
   getAll(): Observable<any>{
-    return this.api.get('/products');
+    return this.api.get<Product[]>('/products');
   }
 
   getHotPicks(): Observable<any> {
     const params = new HttpParams()
       .set('sortBy', 'sales')
       .set('pageSize', '2');
-    return this.api.get('/products', params);
+    return this.api.get<Product[]>('/products', params);
   }
 
   getByCategory(category: string): Observable<any>{
     const params = new HttpParams()
       .set('category', category);
-    return this.api.get('/products', params);
+    return this.api.get<Product[]>('/products', params);
   }
 
   create(product: Product): Observable<any> {
-    return this.api.post('/products', product);
+    return this.api.post<Product>('/products', product);
   }
 
   delete(id: number): Observable<any> {
-    return this.api.delete('/products', id);
+    return this.api.delete<number>('/products', id);
   }
 
   getById(id: number): Observable<any> {
-    return this.api.getById('/products/', id);
+    return this.api.get(`/products/${id}`);
   }
 
   getByTitleContains(q: string): Observable<any> {

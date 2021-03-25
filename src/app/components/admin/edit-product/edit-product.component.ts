@@ -23,7 +23,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
   product: Product;
   categories?: Category[];
   fields: FieldConfig[];
-  inProgressPhotos: Array<{title: string, percentage: Observable<any>}> = [];
+  inProgressPhotos: Array<{percentage: Observable<any>}> = [];
   uploadedPhotos: Photo[] = [];
   @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
 
@@ -61,91 +61,10 @@ export class EditProductComponent implements OnInit, OnDestroy {
     }
   }
 
-  /*id: number;
-    name: string;
-    designation?: string;
-    description?: string;
-    price?: number;
-    quantity?: number;
-    available?: boolean;
-    photos: Photo[];
-    categoryId?: number;*/
-  // initializeForm(): void {
-  //   this.fields = [
-  //     {
-  //       name: 'name',
-  //       type: 'input',
-  //       inputType: 'text',
-  //       label: 'Name',
-  //       value: this.product.name,
-  //       validations: [
-  //         {
-  //           name: 'required',
-  //           validator: Validators.required,
-  //           message: 'Name Required'
-  //         }
-  //       ]},
-  //     {
-  //       name: 'categoryId',
-  //       type: 'select',
-  //       label: 'Category',
-  //       value: this.product.categoryId.toString(),
-  //       options: this.categories.map(cat => ({value: cat.id.toString(), viewValue: cat.name}))
-  //     },
-  //     {
-  //       name: 'designation',
-  //       type: 'input',
-  //       inputType: 'text',
-  //       label: 'Designation',
-  //       value: this.product.designation
-  //     },
-  //     {
-  //       name: 'description',
-  //       type: 'textarea',
-  //       label: 'Description',
-  //       value: this.product.description
-  //     },
-  //     {
-  //       name: 'price',
-  //       type: 'input',
-  //       inputType: 'number',
-  //       label: 'Price',
-  //       value: this.product.price
-  //     },
-  //     {
-  //       name: 'quantity',
-  //       type: 'input',
-  //       inputType: 'number',
-  //       label: 'Quantity',
-  //       value: this.product.quantity
-  //     },
-  //     {
-  //       name: 'available',
-  //       type: 'checkbox',
-  //       label: 'Available',
-  //       value: this.product.available
-  //     },
-  //   ];
-  // }
 
   onFileSelected(files: FileList): void {
     this.inProgressPhotos.push({
-        title: 'hello there bothd',
-        percentage: this.photoService.upload(
-          {
-            id: null,
-            url: null,
-            productId: null,
-            file: files.item(0), title: 'hello there bothd'}
-          )
-          .pipe(map((event: HttpEvent<any>) => {
-            switch (event.type) {
-              case(HttpEventType.UploadProgress):
-                return Math.round((event.loaded / event.total) * 100);
-              case (HttpEventType.Response):
-                this.uploadedPhotos.push(event.body);
-                return 100;
-            }})),
+        percentage: this.photoService.upload(files.item(0))
       }
     );
   }

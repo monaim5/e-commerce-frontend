@@ -1,9 +1,10 @@
 import {Component, Inject, Injector, OnInit, ViewChild} from '@angular/core';
 import {DynamicFormComponent} from '../../shared/dynamic-form/dynamic-form.component';
-import {PromoType, promoTypeFormFields} from '../../../core/models/promo.model';
+import {promoTypeFormFields} from '../../../core/models/promo.model';
 import {FieldConfig} from '../../../shared/field.interface';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {PromoService} from "../../../core/services/promo.service";
+import {PromoService} from '../../../core/services/promo.service';
+import {PromoType} from '../../../core/models/PromoType.model';
 
 @Component({
   selector: 'app-save-promo-type',

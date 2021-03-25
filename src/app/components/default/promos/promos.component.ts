@@ -46,7 +46,7 @@ export class PromosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.push(
       this.promoService.getPromoByPromoType('discount').subscribe(data => {
-        this.promos = data;
+        this.promos = data as any;
         this.products = this.promos.reduce((acc, promo) => acc.concat(promo.products), []);
         console.log(this.products);
       })
