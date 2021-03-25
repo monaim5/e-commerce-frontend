@@ -27,17 +27,38 @@ export class ApiService {
     );
   }
 
-  post<T>(path, payload: any): Observable<any> {
-    return this.http.post<ServerPayload<T>>(`${this.host}${path}`, payload);
+  post<T>(path, payload: any): Observable<Payload<T>> {
+    return this.http.post<ServerPayload<T>>(`${this.host}${path}`, payload).pipe(
+      tap(x => {
+        this.snackBar.open(x.message, '', {duration: 5000});
+      }),
+      map(value => ({stat: DataStat.LOADED, data: value.data, message: value.message})),
+      startWith({stat: DataStat.LOADING}),
+      catchError(err => of({stat: DataStat.ERROR, error: err.error}))
+    );
   }
 
-  put<T>(path, payload: any): Observable<any> {
-    return this.http.put<ServerPayload<T>>(`${this.host}${path}`, payload);
+  put<T>(path, payload: any): Observable<Payload<T>> {
+    return this.http.put<ServerPayload<T>>(`${this.host}${path}`, payload).pipe(
+      tap(x => {
+        this.snackBar.open(x.message, '', {duration: 5000});
+      }),
+      map(value => ({stat: DataStat.LOADED, data: value.data, message: value.message})),
+      startWith({stat: DataStat.LOADING}),
+      catchError(err => of({stat: DataStat.ERROR, error: err.error}))
+    );
   }
 
-  delete<T>(path: string, id: number | string): Observable<any> {
+  delete<T>(path: string, id: number | string): Observable<Payload<T>> {
     const params = new HttpParams()
       .set('id', id.toString());
-    return this.http.delete<ServerPayload<T>>(this.host + path, {params});
+    return this.http.delete<ServerPayload<T>>(this.host + path, {params}).pipe(
+      tap(x => {
+        this.snackBar.open(x.message, '', {duration: 5000});
+      }),
+      map(value => ({stat: DataStat.LOADED, data: value.data, message: value.message})),
+      startWith({stat: DataStat.LOADING}),
+      catchError(err => of({stat: DataStat.ERROR, error: err.error}))
+    );
   }
 }

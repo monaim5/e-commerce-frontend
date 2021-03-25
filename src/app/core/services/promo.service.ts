@@ -29,7 +29,7 @@ export class PromoService {
     return this.api.delete<number>( '/promos', id);
   }
 
-  getTypes(): Observable<any> {
+  getTypes(): Observable<Payload<PromoType[]>> {
     return this.api.get<PromoType[]>('/promos/types');
   }
 

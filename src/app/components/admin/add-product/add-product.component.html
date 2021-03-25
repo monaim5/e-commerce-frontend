@@ -1,12 +1,17 @@
 <div class="container p-3">
   <h2>Add product</h2>
   <div>
-
-    <app-dynamic-form *ngIf="fields !== undefined" [fields]="fields"></app-dynamic-form>
+    <ng-container *ngIf="(categories$ | async) as categories">
+      {{categories.stat}}
+<!--      <ng-template [appWrapPayload]="categories.stat">-->
+        hello there
+        <app-dynamic-form [fields]="productFormFields(categories.data)"></app-dynamic-form>
+<!--      </ng-template>-->
+    </ng-container>
 
 
     <div class="mt-2">
-      <app-file-uploader [service]="photoService" [uploadMethod]="'upload'"></app-file-uploader>
+<!--      <app-file-uploader [service]="photoService" [uploadMethod]="'upload'"></app-file-uploader>-->
     </div>
 
     <button class="mt-2" mat-raised-button color="primary" (click)="submit($event)">submit</button>

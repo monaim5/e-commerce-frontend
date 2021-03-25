@@ -1,13 +1,14 @@
 import {Photo} from './photo.model';
-import {Validators} from "@angular/forms";
-import {CartItem} from "./cart-item.model";
-import {OrderItem} from "./order-item.model";
-import {Category} from "./category.model";
-import {Promo} from "./promo.model";
+import {Validators} from '@angular/forms';
+import {CartItem} from './cart-item.model';
+import {OrderItem} from './order-item.model';
+import {Category} from './category.model';
+import {Promo} from './promo.model';
+import {FieldConfig} from "../../shared/field.interface";
 
-export const productFormFields = (categories, product?) => [
+export const productFormFields = (categories: Category[], product?: Product): FieldConfig[] => [
   {
-    name: 'title', type: 'input', inputType: 'text', label: 'Title', value: product?.name,
+    name: 'title', type: 'input', inputType: 'text', label: 'Title', value: product?.title,
     validations: [
       {
         name: 'required',
@@ -18,7 +19,9 @@ export const productFormFields = (categories, product?) => [
   {
     name: 'categoryId', type: 'select', label: 'Category',
     value: product?.categoryId.toString(),
-    options: categories.map(cat => ({value: cat.id.toString(), viewValue: cat.name}))
+    options: (categories)
+      ? categories.map((cat: Category) => ({value: cat.id.toString(), viewValue: cat.name}))
+      : [{value: '0', viewValue: 'No category'}]
   },
   {
     name: 'designation', type: 'input', inputType: 'text', label: 'Designation', value: product?.designation
@@ -27,7 +30,7 @@ export const productFormFields = (categories, product?) => [
     name: 'description', type: 'textarea', label: 'Description', value: product?.description
   },
   {
-    name: 'price', type: 'input', inputType: 'number', label: 'Price', value: product?.price
+    name: 'price', type: 'input', inputType: 'number', label: 'Price', value: product?.grossPrice
   },
   {
     name: 'quantity', type: 'input', inputType: 'number', label: 'Quantity', value: product?.quantity
@@ -41,23 +44,23 @@ export const productFormFields = (categories, product?) => [
 ];
 
 export interface Product {
-  id: number;
-  title: string;
-  designation: string;
-  description: string;
-  grossPrice: number;
+  id?: number;
+  title?: string;
+  designation?: string;
+  description?: string;
+  grossPrice?: number;
   sales?: number;
-  quantity: number;
-  available: boolean;
-  VATRate: number;
-  rate: number;
-  netPrice: number;
-  categoryId: number;
-  photos: Photo[];
-  cartItems: CartItem[];
-  orderItems: OrderItem[];
-  category: Category;
-  promo: Promo;
+  quantity?: number;
+  available?: boolean;
+  VATRate?: number;
+  rate?: number;
+  netPrice?: number;
+  categoryId?: number;
+  photos?: Photo[];
+  cartItems?: CartItem[];
+  orderItems?: OrderItem[];
+  category?: Category;
+  promo?: Promo;
 
 }
 

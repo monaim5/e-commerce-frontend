@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Promo} from '../../../core/models/promo.model';
+import {Promo, promoFormFields} from '../../../core/models/promo.model';
 import {PromoService} from '../../../core/services/promo.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ProductService} from '../../../core/services/product.service';
@@ -13,8 +13,8 @@ import {Payload} from '../../../core/models/payload.model';
 import {DataStat} from '../../../core/enums/data-stat.enum';
 
 const dialogsComponentsMapper = {
-  promo$: SavePromoComponent,
-  promoType$: SavePromoTypeComponent
+  promo: SavePromoComponent,
+  promoType: SavePromoTypeComponent
 };
 
 @Component({
@@ -56,10 +56,11 @@ export class PromosComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.promos$ = this.promoService.getAll();
     this.promoTypes$ = this.promoService.getTypes();
+
   }
 
   ngOnDestroy(): void {
-    console.log('promos destroyed');
+    console.log('promos component destroyed');
   }
 
   openDialog(dialog, data?): void {

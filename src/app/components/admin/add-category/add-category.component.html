@@ -1,6 +1,8 @@
 <div class="container p-5">
   <h2>Add Category</h2>
   <div>
-    <app-dynamic-form *ngIf="fields !== undefined" [fields]="fields" (submit)="submit($event)"></app-dynamic-form>
+    <app-dynamic-form *ngIf="fields !== undefined" [fields]="fields"></app-dynamic-form>
+<!--    (submit)="submit($event)-->
+    <button class="mt-2" mat-raised-button color="primary" (click)="submit($event)">submit</button>
   </div>
 </div>

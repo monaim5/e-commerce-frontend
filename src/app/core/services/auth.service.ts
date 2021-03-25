@@ -3,9 +3,10 @@ import {ApiService} from './api.service';
 import {SignupPayload} from '../models/signup-payload.model';
 import {Observable} from 'rxjs';
 import {SigninPayload} from '../models/signin-payload.model';
-import {catchError, map, tap} from 'rxjs/operators';
 import {AuthenticationResponse} from '../models/authentication-response.model';
 import {LocalStorageService} from 'ngx-webstorage';
+import {Payload} from '../models/payload.model';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -14,10 +15,10 @@ export class AuthService {
   constructor(private apiService: ApiService,
               private localStorage: LocalStorageService) { }
 
-  private static storeAuthData(response: AuthenticationResponse): void{
-    localStorage.setItem('authenticationToken', response.authenticationToken);
-    localStorage.setItem('refreshToken', response.refreshToken);
-    localStorage.setItem('username', response.username);
+  private static storeAuthData(response: Payload<AuthenticationResponse>): void{
+    localStorage.setItem('authenticationToken', response.data.authenticationToken);
+    localStorage.setItem('refreshToken', response.data.refreshToken);
+    localStorage.setItem('username', response.data.username);
     // localStorage.setItem('expiresAt', response.expiresAt.format());
   }
 

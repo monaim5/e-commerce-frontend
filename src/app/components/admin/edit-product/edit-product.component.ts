@@ -8,9 +8,8 @@ import {DynamicFormComponent} from '../../shared/dynamic-form/dynamic-form.compo
 import {ProductService} from '../../../core/services/product.service';
 import {CategoryService} from '../../../core/services/category.service';
 import {PhotoService} from '../../../core/services/photo.service';
-import {map} from 'rxjs/operators';
-import {HttpEvent, HttpEventType} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
+import {Payload} from '../../../core/models/payload.model';
 
 @Component({
   selector: 'app-edit-product',
@@ -35,7 +34,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.push(
       this.categoryService.getAll().subscribe(data => {
-        this.categories = data;
+        this.categories = data.data;
       })
     );
 
@@ -75,5 +74,8 @@ export class EditProductComponent implements OnInit, OnDestroy {
     this.productService.update(this.product).subscribe(data => {
       console.log(data);
     });
+  }
+
+  submit(event): void {
   }
 }

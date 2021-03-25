@@ -4,6 +4,7 @@ import {AppRoutingModule} from '../app-routing.module';
 import {AdminModule} from './admin/admin.module';
 import {DefaultModule} from './default/default.module';
 import {AuthModule} from './auth/auth.module';
+import { LoadingComponent } from './shared/loading/loading.component';
 
 
 @NgModule({
@@ -15,6 +16,6 @@ import {AuthModule} from './auth/auth.module';
     DefaultModule,
   ],
   declarations: [
-  ]
+  LoadingComponent]
 })
 export class ComponentsModule { }

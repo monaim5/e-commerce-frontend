@@ -1,7 +1,12 @@
 <div fxLayout="row" >
   <div class="mat-elevation-z4 rounded p-2 m-2">
     <h2>{{promo ? 'Edit promo' : 'Add promo'}}</h2>
-    <app-dynamic-form #promoForm *ngIf="promoFields !== undefined" [fields]="promoFields"></app-dynamic-form>
+    <div *ngIf="promoTypes$ | async as payload">
+      <div *ngIf="payload.data">
+        {{fields(payload.data)|json}}
+        <app-dynamic-form #promoForm [fields]="fields(payload.data)"></app-dynamic-form>
+      </div>
+    </div>
     <app-file-uploader #fileUploader [service]="photoService" [uploadMethod]="'upload'"></app-file-uploader>
     <button mat-raised-button color="primary">Submit</button>
   </div>
@@ -18,7 +23,7 @@
                [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete"
                           autoActiveFirstOption (optionSelected)="onSelectProduct($event)"
-                          [displayWith]="getProductName">
+                          [displayWith]="getProductTitle">
           <mat-option *ngFor="let product of searchProductsObservable | async" [value]="product">
             <img [src]="product.photos[0].url" class="ml-1" alt="noPh"
                  style="height: 35px; width: 35px;">{{product.title}}

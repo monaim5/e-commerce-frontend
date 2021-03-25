@@ -2,7 +2,7 @@ import {Product} from './product.model';
 import {FieldConfig} from '../../shared/field.interface';
 import {Validators} from '@angular/forms';
 import {Banner} from './banner.model';
-import {PromoType} from "./promo-type.model";
+import {PromoType} from './promo-type.model';
 
 // export interface PromoType {
 //   name: string;
@@ -20,7 +20,7 @@ export interface Promo {
   promoType?: PromoType;
   banners?: Banner[];
 }
-export const promoTypeFormFields = (promoType?) => [
+export const promoTypeFormFields = (promoType?: PromoType) => [
   {
     name: 'name', type: 'input', label: 'Name', value: promoType?.name
   },
@@ -28,7 +28,7 @@ export const promoTypeFormFields = (promoType?) => [
     name: 'description', type: 'textarea', label: 'Description', value: promoType?.description
   }
 ];
-export const promoFormFields = (promoTypes, promo?): FieldConfig[] => [
+export const promoFormFields = (promoTypes: PromoType[], promo?: Promo): FieldConfig[] => [
   {
     name: 'id', type: 'input', hidden: true, value: promo?.id
   },
@@ -43,9 +43,11 @@ export const promoFormFields = (promoTypes, promo?): FieldConfig[] => [
     name: 'discountAmount', type: 'input', label: 'Discount Amount', inputType: 'number', value: promo?.discountAmount
   },
   {
-    name: 'promoType', type: 'select', label: 'Promo Type', value: promo?.promoType,
-    options: promoTypes.map(promoT => ({value: promoT.name, viewValue: promoT.name})),
-    validations: [{name: 'required', validator: Validators.required, message: 'Please specify a promo type'}]
+    // name: 'promoType', type: 'select', label: 'Promo Type', value: promo?.promoType.id,
+    name: 'promoType', type: 'select', label: 'Promo Type', value: '1',
+    // options: promoTypes.map(promoT => ({value: promoT.name, viewValue: promoT.name})),
+    options: [{value: '1', viewValue: '1'}, {value: '2', viewValue: '2'}],
+    // validations: [{name: 'required', validator: Validators.required, message: 'Please specify a promo type'}]
   },
   {
     name: 'active', type: 'checkbox', label: 'Active', value: promo?.active

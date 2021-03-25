@@ -8,8 +8,11 @@ import {FormControl} from '@angular/forms';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {DynamicFormComponent} from '../../shared/dynamic-form/dynamic-form.component';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {PhotoService} from "../../../core/services/photo.service";
-import {FileUploaderComponent} from "../../shared/file-uploader/file-uploader.component";
+import {PhotoService} from '../../../core/services/photo.service';
+import {FileUploaderComponent} from '../../shared/file-uploader/file-uploader.component';
+import {Payload} from '../../../core/models/payload.model';
+import {PromoType} from '../../../core/models/promo-type.model';
+import {FieldConfig} from "../../../shared/field.interface";
 
 @Component({
   selector: 'app-edit-promo',
@@ -20,12 +23,14 @@ export class SavePromoComponent implements OnInit, OnDestroy {
 
   @ViewChild('promoForm') promoForm: DynamicFormComponent;
   @ViewChild('fileUploader') fileUploader: FileUploaderComponent;
+
   promoProducts: Product[] = [];
   searchProductsObservable: Observable<Product[]>;
   promo: Promo;
+  promoTypes$: Observable<Payload<PromoType[]>>;
   promoFields;
   searchField = new FormControl();
-  getProductName = (prod?) => prod?.name;
+  getProductTitle = (prod?: Product) => prod?.title;
 
   constructor(@Inject(MAT_DIALOG_DATA) public promoData: any | null,
               private productService: ProductService,
@@ -35,9 +40,11 @@ export class SavePromoComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.promo = this.promoData.data;
-    this.promoService.getTypes().subscribe(data => {
-      this.promoFields = promoFormFields(data, this.promo);
-    });
+    this.promoTypes$ = this.promoService.getTypes();
+    // this.promoService.getTypes().subscribe(data => {
+    //   console.log(data);
+    //   this.promoFields = promoFormFields(data.data, this.promo);
+    // });
 
     if (this.promo) {
       this.promoProducts = this.promo.products;
@@ -50,6 +57,9 @@ export class SavePromoComponent implements OnInit, OnDestroy {
     );
   }
 
+  fields(a): FieldConfig[] {
+    return promoFormFields(a);
+  }
   ngOnDestroy(): void {
   }
 
@@ -61,25 +71,25 @@ export class SavePromoComponent implements OnInit, OnDestroy {
 
   }
 
-  // submitPromo(): void {
-  //   const promoPayload: Promo = this.promoForm.value;
-  //   promoPayload.products = this.promoProducts.map(prod => ({
-  //     id: prod.id
-  //   }));
-  //   promoPayload.banners = this.fileUploader.files;
-  //
-  //   if (this.promo) {
-  //     this.promoService.update(this.promo.id, promoPayload).subscribe(
-  //       () => this.dialogRef.close(true),
-  //       () => this.dialogRef.close(false)
-  //     );
-  //   } else {
-  //     this.promoService.create(promoPayload).subscribe(
-  //       () => this.dialogRef.close(true),
-  //       () => this.dialogRef.close(false)
-  //     );
-  //   }
-  // }
+  submitPromo(): void {
+    const promoPayload: Promo = this.promoForm.value;
+    promoPayload.products = this.promoProducts.map(prod => ({
+      id: prod.id
+    }));
+    promoPayload.banners = this.fileUploader.files;
+
+    if (this.promo) {
+      this.promoService.update(this.promo.id, promoPayload).subscribe(
+        () => this.dialogRef.close(true),
+        () => this.dialogRef.close(false)
+      );
+    } else {
+      this.promoService.create(promoPayload).subscribe(
+        () => this.dialogRef.close(true),
+        () => this.dialogRef.close(false)
+      );
+    }
+  }
 
   prodOnPromoProducts(product: Product): boolean {
     return !!this.promoProducts.find(prod => prod.id === product.id);

@@ -16,6 +16,7 @@ import {ItemsListComponent} from './items-list/items-list.component';
 import {TruncateTextPipe} from './truncate-text.pipe';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 import { DiscountPipe } from './discount.pipe';
+import { ErrorComponent } from './error/error.component';
 
 
 @NgModule({
@@ -32,23 +33,24 @@ import { DiscountPipe } from './discount.pipe';
     ItemsListComponent,
     TruncateTextPipe,
     FileUploaderComponent,
-    DiscountPipe
+    DiscountPipe,
+    ErrorComponent
   ],
-    exports: [
-        InputComponent,
-        CheckboxComponent,
-        TextareaComponent,
-        ButtonComponent,
-        SelectComponent,
-        RadiobuttonComponent,
-        RangePickerComponent,
-        DynamicFieldDirective,
-        DynamicFormComponent,
-        ItemsListComponent,
-        TruncateTextPipe,
-        FileUploaderComponent,
-        DiscountPipe
-    ],
+  exports: [
+    InputComponent,
+    CheckboxComponent,
+    TextareaComponent,
+    ButtonComponent,
+    SelectComponent,
+    RadiobuttonComponent,
+    RangePickerComponent,
+    DynamicFieldDirective,
+    DynamicFormComponent,
+    ItemsListComponent,
+    TruncateTextPipe,
+    FileUploaderComponent,
+    DiscountPipe,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

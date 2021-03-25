@@ -8,8 +8,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./dynamic-form.component.css']
 })
 export class DynamicFormComponent implements OnInit {
+
   @Input() fields: FieldConfig[] = [];
-  @Output() submit: EventEmitter<any> = new EventEmitter<any>();
+  @Output() submitt: EventEmitter<any> = new EventEmitter<any>();
   form: FormGroup;
 
   constructor(private fb: FormBuilder) { }
@@ -70,7 +71,7 @@ export class DynamicFormComponent implements OnInit {
     event.preventDefault();
     event.stopPropagation();
     if (this.form.valid) {
-      this.submit.emit(this.form.value);
+      this.submitt.emit(this.form.value);
     } else {
       this.validateAllFormFields(this.form);
     }
