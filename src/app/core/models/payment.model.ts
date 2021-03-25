@@ -2,9 +2,9 @@
  * This class has genearate by ecommerce-mda
  * Author: monaim
  */
-import {PaymentStatus} from "../enums/PaymentStatus.enum";
-import {PaymentMode} from "../enums/PaymentMode.enum";
-import {Order} from "./Order.model";
+import {PaymentStatus} from "../enums/payment-status.enum";
+import {PaymentMode} from "../enums/payment-mode.enum";
+import {Order} from "./order.model";
 
 export interface Payment {
   id: number;

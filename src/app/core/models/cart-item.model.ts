@@ -3,7 +3,7 @@
  * Author: monaim
  */
 import {Product} from "./product.model";
-import {Cart} from "./Cart.model";
+import {Cart} from "./cart.model";
 
 export interface CartItem {
   id: number;

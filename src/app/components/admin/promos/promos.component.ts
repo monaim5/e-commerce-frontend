@@ -6,7 +6,7 @@ import {ProductService} from '../../../core/services/product.service';
 import {MatDialog} from '@angular/material/dialog';
 import {SavePromoComponent} from '../save-promo/save-promo.component';
 import {SavePromoTypeComponent} from '../save-promo-type/save-promo-type.component';
-import {PromoType} from '../../../core/models/PromoType.model';
+import {PromoType} from '../../../core/models/promo-type.model';
 import {HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Payload} from '../../../core/models/payload.model';

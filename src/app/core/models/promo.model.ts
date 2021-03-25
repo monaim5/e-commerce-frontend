@@ -1,8 +1,8 @@
 import {Product} from './product.model';
 import {FieldConfig} from '../../shared/field.interface';
 import {Validators} from '@angular/forms';
-import {Banner} from './Banner.model';
-import {PromoType} from "./PromoType.model";
+import {Banner} from './banner.model';
+import {PromoType} from "./promo-type.model";
 
 // export interface PromoType {
 //   name: string;

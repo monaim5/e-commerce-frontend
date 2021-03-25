@@ -2,9 +2,9 @@
  * This class has genearate by ecommerce-mda
  * Author: monaim
  */
-import {CartStatus} from "../enums/CartStatus.enum";
-import {User} from "./User.model";
-import {CartItem} from "./CartItem.model";
+import {CartStatus} from "../enums/cart-status.enum";
+import {User} from "./user.model";
+import {CartItem} from "./cart-item.model";
 
 export interface Cart {
   id: number;

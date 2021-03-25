@@ -2,9 +2,9 @@
  * This class has genearate by ecommerce-mda
  * Author: monaim
  */
-import {User} from "./User.model";
-import {OrderItem} from "./OrderItem.model";
-import {Payment} from "./Payment.model";
+import {User} from "./user.model";
+import {OrderItem} from "./order-item.model";
+import {Payment} from "./payment.model";
 
 export interface Order {
   id: number;

@@ -3,7 +3,7 @@ import {ApiService} from './api.service';
 import {Observable} from 'rxjs';
 import {Promo} from '../models/promo.model';
 import {HttpParams} from '@angular/common/http';
-import {PromoType} from '../models/PromoType.model';
+import {PromoType} from '../models/promo-type.model';
 import {Payload} from '../models/payload.model';
 
 @Injectable({

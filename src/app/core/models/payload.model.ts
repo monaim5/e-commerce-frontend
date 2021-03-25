@@ -1,8 +1,8 @@
 import {DataStat} from '../enums/data-stat.enum';
-import {ExceptionDto} from './ExceptionDto.model';
+import {ServerException} from './server-exception.model';
 
 export interface Payload<T> {
   stat: DataStat;
   data?: T;
-  error?: ExceptionDto;
+  error?: ServerException;
 }

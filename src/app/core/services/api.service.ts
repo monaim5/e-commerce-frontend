@@ -4,7 +4,7 @@ import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/
 import {Observable, of, throwError} from 'rxjs';
 import {catchError, map, startWith, tap} from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {ExceptionDto} from '../models/ExceptionDto.model';
+import {ServerException} from '../models/server-exception.model';
 import {Payload} from '../models/payload.model';
 import {DataStat} from '../enums/data-stat.enum';
 import {ServerPayload} from '../models/server-payload.model';

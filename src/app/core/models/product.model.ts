@@ -1,7 +1,7 @@
 import {Photo} from './photo.model';
 import {Validators} from "@angular/forms";
-import {CartItem} from "./CartItem.model";
-import {OrderItem} from "./OrderItem.model";
+import {CartItem} from "./cart-item.model";
+import {OrderItem} from "./order-item.model";
 import {Category} from "./category.model";
 import {Promo} from "./promo.model";
 

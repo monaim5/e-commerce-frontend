@@ -3,7 +3,7 @@
  * Author: monaim
  */
 
-export interface ExceptionDto {
+export interface ServerException {
   message: string;
   timeStamp: any;
   httpStatus: any;
