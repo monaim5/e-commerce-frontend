@@ -5,6 +5,7 @@ import {Promo} from '../models/promo.model';
 import {HttpParams} from '@angular/common/http';
 import {PromoType} from '../models/promo-type.model';
 import {Payload} from '../models/payload.model';
+import {DataSet} from "../models/custom.type";
 
 @Injectable({
   providedIn: 'root'
@@ -41,8 +42,8 @@ export class PromoService {
     return this.api.post<PromoType>('/promos/types', promoType);
   }
 
-  updatePromoType(promoTypePayload: any): Observable<any> {
-    return this.api.put<PromoType>('/promos/types', promoTypePayload);
+  updatePromoType(promoTypePayload: PromoType): DataSet<PromoType> {
+    return this.api.put<PromoType>(`/promos/types/${promoTypePayload.id}`, promoTypePayload);
   }
 
   deletePromoType(name: string): Observable<any> {

@@ -1,8 +1,17 @@
 <div class="container p-5">
   <h2>Add Category</h2>
-  <div>
-    <app-dynamic-form *ngIf="fields !== undefined" [fields]="fields"></app-dynamic-form>
-<!--    (submit)="submit($event)-->
+  <div fxLayout="column">
+
+    <app-input label="id" name="id" inputType="text" [hidden]="true" [group]="form"></app-input>
+
+    <app-input label="Name" [group]="form" name="name" inputType="text"
+               [validations]="[{name: 'required', message: 'this field is required'}]"></app-input>
+
+    <app-input label="description" [group]="form" name="description" inputType="text"></app-input>
+
+    <app-input label="icon" [group]="form" name="icon" inputType="text"></app-input>
+
     <button class="mt-2" mat-raised-button color="primary" (click)="submit($event)">submit</button>
+
   </div>
 </div>

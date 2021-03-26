@@ -1,14 +1,27 @@
 <div class="container p-3">
   <h2>Add product</h2>
-  <div>
+  <div fxLayout="column wrap">
+    <app-input [hidden]="true" name="id" [group]="form"></app-input>
+    <app-input name="title" [group]="form"></app-input>
+    <app-input name="description" [group]="form"></app-input>
+    <app-input name="designation" [group]="form"></app-input>
+    <app-input name="grossPrice" [group]="form"></app-input>
+    <app-input name="sales" [group]="form"></app-input>
+    <app-input name="quantity" [group]="form"></app-input>
+    <app-input name="available" [group]="form"></app-input>
+    <app-input name="VATRate" [group]="form"></app-input>
+    <app-input name="rate" [group]="form"></app-input>
+    <app-input name="netPrice" [group]="form"></app-input>
+
     <ng-container *ngIf="(categories$ | async) as categories">
-      {{categories.stat}}
-<!--      <ng-template [appWrapPayload]="categories.stat">-->
-        hello there
-        <app-dynamic-form [fields]="productFormFields(categories.data)"></app-dynamic-form>
-<!--      </ng-template>-->
+      <app-select label="Category" name="id" [group]="form.get('category')"
+                  [options]="categories.data | mapToSelectOptions : 'id' : 'name'"></app-select>
     </ng-container>
 
+    <ng-container *ngIf="(promos$ | async) as promos">
+      <app-select label="Promo" name="id" [group]="form.get('promo')"
+                 [options]="promos.data | mapToSelectOptions : 'id' : 'name'"></app-select>
+    </ng-container>
 
     <div class="mt-2">
 <!--      <app-file-uploader [service]="photoService" [uploadMethod]="'upload'"></app-file-uploader>-->

@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Promo, promoFormFields} from '../../../core/models/promo.model';
+import {Promo} from '../../../core/models/promo.model';
 import {PromoService} from '../../../core/services/promo.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {ProductService} from '../../../core/services/product.service';
@@ -7,10 +7,10 @@ import {MatDialog} from '@angular/material/dialog';
 import {SavePromoComponent} from '../save-promo/save-promo.component';
 import {SavePromoTypeComponent} from '../save-promo-type/save-promo-type.component';
 import {PromoType} from '../../../core/models/promo-type.model';
-import {HttpResponse} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Payload} from '../../../core/models/payload.model';
 import {DataStat} from '../../../core/enums/data-stat.enum';
+import {DataSet} from "../../../core/models/custom.type";
 
 const dialogsComponentsMapper = {
   promo: SavePromoComponent,
@@ -23,8 +23,8 @@ const dialogsComponentsMapper = {
   styleUrls: ['./promos.component.css']
 })
 export class PromosComponent implements OnInit, OnDestroy {
-  promoTypes$: Observable<Payload<PromoType[]>>;
-  promos$: Observable<Payload<Promo[]>>;
+  promoTypes$: DataSet<PromoType[]>;
+  promos$: DataSet<Promo[]>;
   readonly DataStat = DataStat;
 
   promoSettings = {
@@ -43,6 +43,7 @@ export class PromosComponent implements OnInit, OnDestroy {
   promoTypeSettings = {
     mode: 'external',
     columns: {
+      id: {title: 'Id'},
       name: {title: 'Name'},
       description: {title: 'Description'},
     }
@@ -72,10 +73,11 @@ export class PromosComponent implements OnInit, OnDestroy {
         data: {data: data || null}
     });
 
-    dialogRef.afterClosed().subscribe(stat => {
-      if (stat === true) {this.snackBar.open('success', '', {duration: 3000}); }
-      if (stat === false) {this.snackBar.open('error', '', {duration: 3000}); }
-      this.refresh(dialog);
+    dialogRef.afterClosed().subscribe((stat: Payload<Promo | PromoType>) => {
+      if (stat?.stat === DataStat.LOADED) {
+        this.snackBar.open('success', '', {duration: 3000});
+        this.refresh(dialog);
+      }
     });
   }
 
@@ -98,22 +100,18 @@ export class PromosComponent implements OnInit, OnDestroy {
   }
 
   deletePromoType(event): void {
-  //   const id = event.data.name;
-  //   this.promoService.deletePromoType(id).subscribe(
-  //     () => {
-  //       this.refresh('promoType');
-  //       this.snackBar.open('Success:', '', {duration: 3000}); },
-  //     () => this.snackBar.open('Error:', 'Detach all promos from this promo type', {duration: 3000}));
+    const id = event.data.id;
+    this.promoService.deletePromoType(id).subscribe(() => this.refresh('promoType'));
   }
 
   refresh(s): void {
-  //   switch (s) {
-  //     case 'promo':
-  //       this.promoService.getAll().subscribe(payload => {this.promos = payload; });
-  //       break;
-  //     case 'promoType':
-  //       this.promoService.getTypes().subscribe(payload => {this.promoTypes = payload.data; });
-  //       break;
-  //   }
+    switch (s) {
+      case 'promo':
+        this.promos$ = this.promoService.getAll();
+        break;
+      case 'promoType':
+        this.promoTypes$ = this.promoService.getTypes();
+        break;
+    }
   }
 }

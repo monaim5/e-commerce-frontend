@@ -1,10 +1,10 @@
-import {Component, Inject, Injector, OnInit, ViewChild} from '@angular/core';
-import {DynamicFormComponent} from '../../shared/dynamic-form/dynamic-form.component';
-import {promoTypeFormFields} from '../../../core/models/promo.model';
-import {FieldConfig} from '../../../shared/field.interface';
+import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {PromoService} from '../../../core/services/promo.service';
-import {PromoType} from '../../../core/models/promo-type.model';
+import {PromoType, PromoTypeModel} from '../../../core/models/promo-type.model';
+import {FormGroup} from '@angular/forms';
+import {DataSet} from '../../../core/models/custom.type';
+import {Payload} from "../../../core/models/payload.model";
 
 @Component({
   selector: 'app-save-promo-type',
@@ -12,24 +12,31 @@ import {PromoType} from '../../../core/models/promo-type.model';
   styleUrls: ['./save-promo-type.component.css']
 })
 export class SavePromoTypeComponent implements OnInit {
+  form: FormGroup;
   promoType: PromoType;
-  promoTypeFields: FieldConfig[];
-  @ViewChild('promoForm') promoTypeForm: DynamicFormComponent;
 
   constructor(@Inject(MAT_DIALOG_DATA) public promoTypeData: any | null,
               private promoService: PromoService,
               private dialogRef: MatDialogRef<SavePromoTypeComponent>) { }
 
   ngOnInit(): void {
-    this.promoType = this.promoTypeData.data;
-    this.promoTypeFields = promoTypeFormFields(this.promoType);
+    this.form = PromoTypeModel.getFormGroup(this.promoTypeData.data);
   }
 
   submitPromoType(): void {
-    const promoTypePayload: PromoType = this.promoTypeForm.value;
-    this.promoService.createPromoType(promoTypePayload).subscribe(
-      () => this.dialogRef.close(true),
-      () => this.dialogRef.close(false)
-    );
+    if (this.form.valid) {
+      if (this.promoTypeData.data) {
+        this.promoService.updatePromoType(this.form.value).subscribe(
+          (data: Payload<PromoType>) => this.dialogRef.close(data),
+          (err: Payload<null>) => this.dialogRef.close(err)
+        );
+      } else {
+        this.promoService.createPromoType(this.form.value).subscribe(
+          (data: Payload<PromoType>) => this.dialogRef.close(data),
+          (err: Payload<null>) => this.dialogRef.close(err)
+        );
+      }
+    }
   }
+
 }

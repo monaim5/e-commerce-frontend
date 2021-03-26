@@ -1,23 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import {FieldConfig} from "../../../shared/field.interface";
-import {FormGroup} from "@angular/forms";
+import {Component, Input, OnInit} from '@angular/core';
+import {AbstractControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-input',
   template: `
-    <mat-form-field [hidden]="field.hidden" appearance="outline" [formGroup]="group">
-      <mat-label>{{field.label}}</mat-label>
-      <input matInput [formControlName]="field.name" [type]="field.inputType">
-      <ng-container *ngFor="let validation of field.validations;" ngProjectAs="mat-error">
-        <mat-error *ngIf="group.get(field.name).hasError(validation.name)">{{validation.message}}</mat-error>
-      </ng-container>
+    <mat-form-field [hidden]="hidden || false" appearance="outline" [formGroup]="group">
+      <mat-label>{{label || name | capitalize}}</mat-label>
+      <input matInput [formControlName]="name" [type]="inputType || 'text'">
+      <div *ngIf="group.get(name).touched && group.get(name).invalid" ngProjectAs="mat-error">
+        <ng-container *ngFor="let val of validations">
+          <mat-error *ngIf="group.get(name).hasError(val.name)">{{val.message}}</mat-error>
+        </ng-container>
+      </div>
     </mat-form-field>
   `,
   styles: []
 })
 export class InputComponent implements OnInit {
-  field: FieldConfig;
-  group: FormGroup;
+  // field: FieldConfig;
+  @Input() name: string;
+  @Input() label: string;
+  @Input() hidden: boolean;
+  // @Input() formGroup: string;
+  // @Input() type: string;
+  @Input() inputType: string;
+  @Input() validations: {name: string, message: string}[];
+  @Input() group: FormGroup | AbstractControl;
   constructor() { }
 
   ngOnInit(): void {

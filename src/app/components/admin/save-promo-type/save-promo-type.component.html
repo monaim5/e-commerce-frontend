@@ -1,5 +1,10 @@
 <div class="mat-elevation-z4 rounded p-2 m-2">
   <h2>{{promoType ? 'Edit promo type' : 'Add promo type'}}</h2>
-  <app-dynamic-form #promoForm *ngIf="promoTypeFields !== undefined" [fields]="promoTypeFields"></app-dynamic-form>
-  <button mat-raised-button color="primary" (click)="submitPromoType()">Submit</button>
+  <div fxLayout="column">
+    <app-input name="id" [hidden]="true" [group]="form"></app-input>
+    <app-input name="name" [group]="form"></app-input>
+    <app-textarea name="description" [group]="form"></app-textarea>
+    <button mat-raised-button color="primary" (click)="submitPromoType()">Submit</button>
+  </div>
 </div>
+

@@ -17,6 +17,8 @@ import {TruncateTextPipe} from './truncate-text.pipe';
 import { FileUploaderComponent } from './file-uploader/file-uploader.component';
 import { DiscountPipe } from './discount.pipe';
 import { ErrorComponent } from './error/error.component';
+import { CapitalizePipe } from './capitalize.pipe';
+import { MapToSelectOptionsPipe } from './map-to-select-options.pipe';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { ErrorComponent } from './error/error.component';
     TruncateTextPipe,
     FileUploaderComponent,
     DiscountPipe,
-    ErrorComponent
+    ErrorComponent,
+    CapitalizePipe,
+    MapToSelectOptionsPipe
   ],
   exports: [
     InputComponent,
@@ -50,6 +54,8 @@ import { ErrorComponent } from './error/error.component';
     TruncateTextPipe,
     FileUploaderComponent,
     DiscountPipe,
+    CapitalizePipe,
+    MapToSelectOptionsPipe
   ],
   imports: [
     CommonModule,

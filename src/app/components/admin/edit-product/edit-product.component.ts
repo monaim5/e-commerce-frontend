@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {Product, productFormFields} from '../../../core/models/product.model';
+import {Product} from '../../../core/models/product.model';
 import {Category} from '../../../core/models/category.model';
 import {FieldConfig} from '../../../shared/field.interface';
 import {Observable, Subscription} from 'rxjs';
@@ -47,7 +47,7 @@ export class EditProductComponent implements OnInit, OnDestroy {
     this.subscriptions.push(
       this.productService.getById(this.currentId).subscribe(data => {
         this.product = data;
-        this.fields = productFormFields(this.categories, this.product);
+        // this.fields = productFormFields(this.categories, this.product);
       }, error => {
         console.log(error);
       })

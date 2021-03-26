@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
-import {Observable, of, throwError} from 'rxjs';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Observable, of} from 'rxjs';
 import {catchError, map, startWith, tap} from 'rxjs/operators';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {ServerException} from '../models/server-exception.model';
 import {Payload} from '../models/payload.model';
 import {DataStat} from '../enums/data-stat.enum';
 import {ServerPayload} from '../models/server-payload.model';
@@ -29,6 +28,7 @@ export class ApiService {
 
   post<T>(path, payload: any): Observable<Payload<T>> {
     return this.http.post<ServerPayload<T>>(`${this.host}${path}`, payload).pipe(
+      tap(console.log),
       tap(x => {
         this.snackBar.open(x.message, '', {duration: 5000});
       }),

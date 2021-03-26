@@ -76,6 +76,9 @@ button:focus { outline: none; }
   transform: translateY(-1.2em) scale(0.75);
 }
 
+.mat-form-field-subscript-wrapper {
+  position: relative !important;
+}
 /*.mat-form-field-appearance-outline .mat-form-field-wrapper {*/
 /*  margin: 0;*/
 /*}*/

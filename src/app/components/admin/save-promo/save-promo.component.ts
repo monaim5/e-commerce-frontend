@@ -2,17 +2,17 @@ import {Component, Inject, Input, OnDestroy, OnInit, ViewChild} from '@angular/c
 import {ProductService} from '../../../core/services/product.service';
 import {Product} from '../../../core/models/product.model';
 import {Observable} from 'rxjs';
-import {Promo, promoFormFields} from '../../../core/models/promo.model';
+import {Promo, PromoModel} from '../../../core/models/promo.model';
 import {PromoService} from '../../../core/services/promo.service';
-import {FormControl} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
 import {DynamicFormComponent} from '../../shared/dynamic-form/dynamic-form.component';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {PhotoService} from '../../../core/services/photo.service';
 import {FileUploaderComponent} from '../../shared/file-uploader/file-uploader.component';
-import {Payload} from '../../../core/models/payload.model';
 import {PromoType} from '../../../core/models/promo-type.model';
-import {FieldConfig} from "../../../shared/field.interface";
+import {DataSet} from '../../../core/models/custom.type';
+import {Payload} from "../../../core/models/payload.model";
 
 @Component({
   selector: 'app-edit-promo',
@@ -24,12 +24,15 @@ export class SavePromoComponent implements OnInit, OnDestroy {
   @ViewChild('promoForm') promoForm: DynamicFormComponent;
   @ViewChild('fileUploader') fileUploader: FileUploaderComponent;
 
+  form: FormGroup;
   promoProducts: Product[] = [];
   searchProductsObservable: Observable<Product[]>;
-  promo: Promo;
-  promoTypes$: Observable<Payload<PromoType[]>>;
-  promoFields;
+  promo$: DataSet<Promo>;
+  promoTypes$: DataSet<PromoType[]>;
   searchField = new FormControl();
+
+  formFields = PromoModel.getFormGroup;
+
   getProductTitle = (prod?: Product) => prod?.title;
 
   constructor(@Inject(MAT_DIALOG_DATA) public promoData: any | null,
@@ -39,16 +42,13 @@ export class SavePromoComponent implements OnInit, OnDestroy {
               private dialogRef: MatDialogRef<SavePromoComponent>) { }
 
   ngOnInit(): void {
-    this.promo = this.promoData.data;
     this.promoTypes$ = this.promoService.getTypes();
-    // this.promoService.getTypes().subscribe(data => {
-    //   console.log(data);
-    //   this.promoFields = promoFormFields(data.data, this.promo);
-    // });
 
-    if (this.promo) {
-      this.promoProducts = this.promo.products;
-    }
+    if (this.promoData.data) {
+      this.promoService.getById(this.promoData.data.id).subscribe((data: Payload<Promo>) => {
+        this.form = PromoModel.getFormGroup(data?.data);
+      });
+    } else {this.form = PromoModel.getFormGroup(); }
 
     this.searchProductsObservable = this.searchField.valueChanges.pipe(
       debounceTime(100),
@@ -57,9 +57,6 @@ export class SavePromoComponent implements OnInit, OnDestroy {
     );
   }
 
-  fields(a): FieldConfig[] {
-    return promoFormFields(a);
-  }
   ngOnDestroy(): void {
   }
 
@@ -72,23 +69,26 @@ export class SavePromoComponent implements OnInit, OnDestroy {
   }
 
   submitPromo(): void {
-    const promoPayload: Promo = this.promoForm.value;
-    promoPayload.products = this.promoProducts.map(prod => ({
-      id: prod.id
-    }));
-    promoPayload.banners = this.fileUploader.files;
-
-    if (this.promo) {
-      this.promoService.update(this.promo.id, promoPayload).subscribe(
-        () => this.dialogRef.close(true),
-        () => this.dialogRef.close(false)
-      );
-    } else {
-      this.promoService.create(promoPayload).subscribe(
-        () => this.dialogRef.close(true),
-        () => this.dialogRef.close(false)
-      );
-    }
+    this.promoService.create(this.form.value).subscribe(
+      (data: Payload<Promo>) => this.dialogRef.close(data),
+        (err: Payload<null>) => this.dialogRef.close(err)
+    );
+    // promoPayload.products = this.promoProducts.map(prod => ({
+    //   id: prod.id
+    // }));
+    // promoPayload.banners = this.fileUploader.files;
+    //
+    // if (this.promo) {
+    //   this.promoService.update(this.promo.id, promoPayload).subscribe(
+    //     () => this.dialogRef.close(true),
+    //     () => this.dialogRef.close(false)
+    //   );
+    // } else {
+    //   this.promoService.create(promoPayload).subscribe(
+    //     () => this.dialogRef.close(true),
+    //     () => this.dialogRef.close(false)
+    //   );
+    // }
   }
 
   prodOnPromoProducts(product: Product): boolean {
