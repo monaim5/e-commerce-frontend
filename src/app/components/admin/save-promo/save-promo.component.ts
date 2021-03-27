@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Inject, Input, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ProductService} from '../../../core/services/product.service';
 import {Product} from '../../../core/models/product.model';
 import {Observable} from 'rxjs';
@@ -6,13 +6,12 @@ import {Promo, PromoModel} from '../../../core/models/promo.model';
 import {PromoService} from '../../../core/services/promo.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {debounceTime, map, switchMap} from 'rxjs/operators';
-import {DynamicFormComponent} from '../../shared/dynamic-form/dynamic-form.component';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {PhotoService} from '../../../core/services/photo.service';
 import {FileUploaderComponent} from '../../shared/file-uploader/file-uploader.component';
 import {PromoType} from '../../../core/models/promo-type.model';
 import {DataSet} from '../../../core/models/custom.type';
-import {Payload} from "../../../core/models/payload.model";
+import {Payload} from '../../../core/models/payload.model';
 
 @Component({
   selector: 'app-edit-promo',
@@ -21,17 +20,18 @@ import {Payload} from "../../../core/models/payload.model";
 })
 export class SavePromoComponent implements OnInit, OnDestroy {
 
-  @ViewChild('promoForm') promoForm: DynamicFormComponent;
+  // @ViewChild('promoForm') promoForm: DynamicFormComponent;
   @ViewChild('fileUploader') fileUploader: FileUploaderComponent;
 
   form: FormGroup;
   promoProducts: Product[] = [];
-  searchProductsObservable: Observable<Product[]>;
-  promo$: DataSet<Promo>;
+  // searchProductsObservable: DataSet<Product[]>;
+  // promo$: DataSet<Promo>;
   promoTypes$: DataSet<PromoType[]>;
+
   searchField = new FormControl();
 
-  formFields = PromoModel.getFormGroup;
+  // formFields = PromoModel.getFormGroup;
 
   getProductTitle = (prod?: Product) => prod?.title;
 
@@ -42,19 +42,20 @@ export class SavePromoComponent implements OnInit, OnDestroy {
               private dialogRef: MatDialogRef<SavePromoComponent>) { }
 
   ngOnInit(): void {
-    this.promoTypes$ = this.promoService.getTypes();
-
     if (this.promoData.data) {
       this.promoService.getById(this.promoData.data.id).subscribe((data: Payload<Promo>) => {
         this.form = PromoModel.getFormGroup(data?.data);
       });
-    } else {this.form = PromoModel.getFormGroup(); }
+    } else {
+      this.form = PromoModel.getFormGroup();
+    }
+    this.promoTypes$ = this.promoService.getTypes();
 
-    this.searchProductsObservable = this.searchField.valueChanges.pipe(
-      debounceTime(100),
-      switchMap(term => this.productService.getByTitleContains(term || 'a')
-        .pipe(map(prodList => prodList.filter(prod => !this.prodOnPromoProducts(prod)))))
-    );
+    // this.searchProductsObservable = this.searchField.valueChanges.pipe(
+    //   debounceTime(100),
+    //   switchMap(term => this.productService.getByTitleContains(term || 'a')
+    //     .pipe(map(prodList => prodList.filter(prod => !this.prodOnPromoProducts(prod)))))
+    // );
   }
 
   ngOnDestroy(): void {
@@ -69,10 +70,18 @@ export class SavePromoComponent implements OnInit, OnDestroy {
   }
 
   submitPromo(): void {
-    this.promoService.create(this.form.value).subscribe(
-      (data: Payload<Promo>) => this.dialogRef.close(data),
-        (err: Payload<null>) => this.dialogRef.close(err)
-    );
+
+    console.log(this.fileUploader.files);
+
+    // const action = (this.promoData.date) ? 'create' : 'update';
+    // this.promoService[action](this.form.value).subscribe(
+    //   (data: Payload<Promo>) => this.dialogRef.close(data),
+    //     (err: Payload<null>) => this.dialogRef.close(err)
+    // );
+
+
+
+    //
     // promoPayload.products = this.promoProducts.map(prod => ({
     //   id: prod.id
     // }));

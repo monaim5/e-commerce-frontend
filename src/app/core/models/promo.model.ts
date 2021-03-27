@@ -27,17 +27,19 @@ export class PromoModel {
                                     'products', 'promoType', 'banners'];
 
   static getFormGroup(promo?: Promo): FormGroup {
-    return new FormGroup({
+    const fg = new FormGroup({
       id: new FormControl(promo?.id),
       title: new FormControl(promo?.title),
-      startDate: new FormControl(promo?.startDate),
-      endDate: new FormControl(promo?.endDate),
+      startDate: new FormControl(new Date(promo?.startDate)),
+      endDate: new FormControl(new Date(promo?.endDate)),
       discountAmount: new FormControl(promo?.discountAmount),
       active: new FormControl(promo?.active),
       promoType: new FormGroup({id: new FormControl(promo?.promoType.id)}),
       banners: new FormArray((promo) ? promo.banners.map(ban => new FormControl(ban.id)) : []),
       products: new FormArray((promo) ? promo?.banners.map(prod => new FormControl(prod.id)) : []),
     });
+    return fg;
+
   }
 
   // static getFormGroup$(promo: Promo): FormGroup {

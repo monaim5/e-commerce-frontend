@@ -17,6 +17,7 @@ export class ApiService {
 
   get<T>(path: string, params: HttpParams = new HttpParams()): Observable<Payload<T>> {
     return this.http.get<ServerPayload<T>>(`${this.host}${path}`, {params}).pipe(
+      tap(console.log),
       tap(x => {
         this.snackBar.open(x.message, '', {duration: 5000});
       }),
@@ -26,8 +27,8 @@ export class ApiService {
     );
   }
 
-  post<T>(path, payload: any): Observable<Payload<T>> {
-    return this.http.post<ServerPayload<T>>(`${this.host}${path}`, payload).pipe(
+  post<T>(path, payload: any, ...args): Observable<Payload<T>> {
+    return this.http.post<ServerPayload<T>>(`${this.host}${path}`, payload, ...args).pipe(
       tap(console.log),
       tap(x => {
         this.snackBar.open(x.message, '', {duration: 5000});
@@ -40,6 +41,7 @@ export class ApiService {
 
   put<T>(path, payload: any): Observable<Payload<T>> {
     return this.http.put<ServerPayload<T>>(`${this.host}${path}`, payload).pipe(
+      tap(console.log),
       tap(x => {
         this.snackBar.open(x.message, '', {duration: 5000});
       }),
@@ -53,6 +55,7 @@ export class ApiService {
     const params = new HttpParams()
       .set('id', id.toString());
     return this.http.delete<ServerPayload<T>>(this.host + path, {params}).pipe(
+      tap(console.log),
       tap(x => {
         this.snackBar.open(x.message, '', {duration: 5000});
       }),

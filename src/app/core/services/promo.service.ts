@@ -34,8 +34,8 @@ export class PromoService {
     return this.api.get<PromoType[]>('/promos/types');
   }
 
-  update(id: number, promoPayload: Promo): Observable<any> {
-    return this.api.put<Promo>('/promos/' + id, promoPayload);
+  update(promoPayload: Promo): DataSet<Promo> {
+    return this.api.put<Promo>('/promos/' + promoPayload.id, promoPayload);
   }
 
   createPromoType(promoType: PromoType): Observable<any> {

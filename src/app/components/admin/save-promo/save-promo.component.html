@@ -6,9 +6,10 @@
 
       <app-input [hidden]="true" name="id" [group]="form"></app-input>
       <app-input name="title" [group]="form"></app-input>
-      <app-range-picker label="period" startDate="startDate" endDate="endDate" [group]="form"></app-range-picker>
+      <app-range-picker label="period" startDateName="startDate" endDateName="endDate" [group]="form"></app-range-picker>
       <app-input name="discountAmount" inputType="number" [group]="form"></app-input>
       <app-input name="active" [group]="form"></app-input>
+
       <ng-container *ngIf="promoTypes$ | async as promoType">
         <app-select name="id" [group]="form.get('promoType')" [options]="promoType.data | mapToSelectOptions: 'id': 'name'"></app-select>
       </ng-container>
@@ -16,37 +17,33 @@
 
     </ng-container>
 
-<!--    <ng-container *ngIf="promoTypes$ | async as payload">-->
-
-<!--    </ng-container>-->
-
-<!--    <app-file-uploader #fileUploader [service]="photoService" [uploadMethod]="'upload'"></app-file-uploader>-->
+    <app-file-uploader #fileUploader [service]="photoService" [uploadMethod]="'upload'"></app-file-uploader>
 
     <button mat-raised-button color="primary" (click)="submitPromo()">Submit</button>
 
   </div>
 
-  <div fxLayout="column" class="mat-elevation-z4 rounded p-2 m-2 w-100">
-    <div fxLayout="row" fxLayoutAlign="space-evenly start" class="w-100">
-      <h2>Products</h2>
-      <mat-form-field [style.width.px]=327>
-        <input type="text"
-               placeholder="Pick one"
-               aria-label="Number"
-               matInput
-               [formControl]="searchField"
-               [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete"
-                          autoActiveFirstOption (optionSelected)="onSelectProduct($event)"
-                          [displayWith]="getProductTitle">
-          <mat-option *ngFor="let product of searchProductsObservable | async" [value]="product">
-            <img [src]="product.photos[0].url" class="ml-1" alt="noPh"
-                 style="height: 35px; width: 35px;">{{product.title}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </div>
+<!--  <div fxLayout="column" class="mat-elevation-z4 rounded p-2 m-2 w-100">-->
+<!--    <div fxLayout="row" fxLayoutAlign="space-evenly start" class="w-100">-->
+<!--      <h2>Products</h2>-->
+<!--      <mat-form-field [style.width.px]=327>-->
+<!--        <input type="text"-->
+<!--               placeholder="Pick one"-->
+<!--               aria-label="Number"-->
+<!--               matInput-->
+<!--               [formControl]="searchField"-->
+<!--               [matAutocomplete]="auto">-->
+<!--        <mat-autocomplete #auto="matAutocomplete"-->
+<!--                          autoActiveFirstOption (optionSelected)="onSelectProduct($event)"-->
+<!--                          [displayWith]="getProductTitle">-->
+<!--          <mat-option *ngFor="let product of searchProductsObservable | async" [value]="product">-->
+<!--            <img [src]="product.photos[0].url" class="ml-1" alt="noPh"-->
+<!--                 style="height: 35px; width: 35px;">{{product.title}}-->
+<!--          </mat-option>-->
+<!--        </mat-autocomplete>-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
 
-    <app-items-list [data]="promoProducts" (delete)="deletePromoProduct($event)"></app-items-list>
-  </div>
+<!--    <app-items-list [data]="promoProducts" (delete)="deletePromoProduct($event)"></app-items-list>-->
+<!--  </div>-->
 </div>
